@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#EA6B66"
+    android:fitsSystemWindows="true">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--  Email Label -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/signup_email"
+            android:textColorHint="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/signup_input_email"
+                android:textCursorDrawable="@null"
+                android:textColor="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Email" />
+        </android.support.design.widget.TextInputLayout>
+        <!--  Nickname Label -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/signup_nickname"
+            android:textColorHint="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/signup_input_nickname"
+                android:textCursorDrawable="@null"
+                android:textColor="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Nickname" />
+        </android.support.design.widget.TextInputLayout>
+        <!--  Password Label -->
+        <android.support.design.widget.TextInputLayout
+        android:id="@+id/signup_password"
+        android:textColorHint="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/signup_input_password"
+            android:textCursorDrawable="@null"
+            android:textColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Password"/>
+       </android.support.design.widget.TextInputLayout>
+        <!--  Password Check Label -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/signup_password_check"
+            android:textColorHint="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/signup_input_password_check"
+                android:textCursorDrawable="@null"
+                android:textColor="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Password check"/>
+        </android.support.design.widget.TextInputLayout>
+        <!-- Push notification check label -->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Push Notification"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"/>
+           <RadioGroup
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+               <RadioButton
+                   android:id="@+id/acceptNoti"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textColor="#FFFFFF"
+                   android:text="수신"/>
+               <RadioButton
+                   android:id="@+id/denyNoti"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textColor="#FFFFFF"
+                   android:text="비수신"/>
+           </RadioGroup>
+        <!-- Singup  Button -->
+        <Button
+            android:id="@+id/btn_signupComplete"
+            android:background="#FFFFFF"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:text="Sign up"
+            android:textColor="#EA6B66"/>
+    </LinearLayout>
+</RelativeLayout>
