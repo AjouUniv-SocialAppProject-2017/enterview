@@ -1,53 +1,80 @@
 package com.example.ajou.myapplication;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+
+/**
+ * Created by ajou on 2017-11-08.
+ */
 
 public class MainActivity extends AppCompatActivity {
-
-    Button loginBtn;
-    Button signupBtn;
-    EditText input_email;
-    EditText input_password;
-
+    ViewPager pager;
+    Button category;
+    Button bulletin;
+    Button myPage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loginBtn = (Button) findViewById(R.id.btn_login);
-        signupBtn = (Button) findViewById(R.id.btn_signup);
-        input_email = (EditText) findViewById(R.id.input_email);
-        input_password = (EditText)findViewById(R.id.input_password);
-        // login button 클릭 시 이벤트
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+
+        pager = (ViewPager)findViewById(R.id.pager);
+        category= (Button)findViewById(R.id.btn_category);
+        bulletin = (Button)findViewById(R.id.btn_bulletin);
+        myPage = (Button)findViewById(R.id.btn_mypage);
+
+        pager.setAdapter(new pagerAdapter(getSupportFragmentManager()));
+        pager.setCurrentItem(1);
+
+        View.OnClickListener movePageListener = new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                    login();
+            public void onClick(View view) {
+                int tag = (int)view.getTag();
+                pager.setCurrentItem(tag);
             }
-        });
-        // signup button 클릭 시 이벤트
-        signupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SignupActivity.class);
-                startActivity(intent);
-            }
-        });
+        };
+
+        category.setOnClickListener(movePageListener);
+        category.setTag(0);
+        bulletin.setOnClickListener(movePageListener);
+        bulletin.setTag(1);
+        myPage.setOnClickListener(movePageListener);
+        myPage.setTag(2);
     }
 
-    void login(){
-        // 로그인 구현
-        String email;
-        String password;
+    private class pagerAdapter extends FragmentStatePagerAdapter
+    {
+        public pagerAdapter(FragmentManager fm )
+        {
+            super(fm);
+        }
 
-        email = input_email.getText().toString();
-        password = input_password.getText().toString();
-        Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
-        startActivity(intent);
-        // 등록된 회원 정보와 비교 후 로그인 성공 실패 여부 결정
+        @Override
+        public Fragment getItem(int position) {
+            switch(position)
+            {
+                case 0:
+                    return new CategoryFragment();
+                case 1:
+                    return new BulletinBoardFragment();
+                case 2:
+                    return new MyPageFragment();
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            // total page count
+            return 3;
+        }
     }
+
 }
