@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
         email = input_email.getText().toString();
         password = input_password.getText().toString();
-
+        Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+        startActivity(intent);
         // 등록된 회원 정보와 비교 후 로그인 성공 실패 여부 결정
     }
 }
