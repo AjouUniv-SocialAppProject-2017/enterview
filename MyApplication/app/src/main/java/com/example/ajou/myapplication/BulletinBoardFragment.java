@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 /**
  * Created by ajou on 2017-11-08.
  */
-
+// 게시판 fragment
 public class BulletinBoardFragment extends Fragment {
     public BulletinBoardFragment()
     {

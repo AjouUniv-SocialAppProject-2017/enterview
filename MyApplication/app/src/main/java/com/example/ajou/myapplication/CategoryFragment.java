@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 /**
  * Created by ajou on 2017-11-07.
  */
+// 녹화 fragment
 
 public class CategoryFragment extends Fragment {
     public CategoryFragment(){

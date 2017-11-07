@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 /**
  * Created by ajou on 2017-11-08.
  */
-
+// mypage fragment
 public class MyPageFragment extends Fragment {
     public MyPageFragment()
     {

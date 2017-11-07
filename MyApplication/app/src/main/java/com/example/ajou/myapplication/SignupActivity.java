@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-
+// 회원가입 activity
 public class SignupActivity extends AppCompatActivity {
     Button signupBtn;
     EditText email;

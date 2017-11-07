@@ -12,12 +12,12 @@ import android.widget.Button;
 /**
  * Created by ajou on 2017-11-08.
  */
-
+// 여기가 로그인 후 나오게 되는 메인 액티비티
 public class MainActivity extends AppCompatActivity {
     ViewPager pager;
-    Button category;
-    Button bulletin;
-    Button myPage;
+    Button category; // 녹화 탭 버튼
+    Button bulletin; // 게시판 탭 버튼
+    Button myPage; // 마이페이지 탭 버튼
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         myPage = (Button)findViewById(R.id.btn_mypage);
 
         pager.setAdapter(new pagerAdapter(getSupportFragmentManager()));
-        pager.setCurrentItem(1);
+        pager.setCurrentItem(1); // 게시판이 첫 화면으로 설정
 
         View.OnClickListener movePageListener = new View.OnClickListener()
         {
