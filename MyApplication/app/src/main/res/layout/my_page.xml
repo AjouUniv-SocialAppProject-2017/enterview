@@ -1,14 +1,135 @@
-
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FF00">
+    android:background="@color/colorPrimary">
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:text="My_page" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:padding="5dip">
+        <LinearLayout
+            android:id="@+id/part1"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/mypageTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="26dp"
+            android:background="@color/colorAccent"
+            android:padding="5dip"
+            android:text="회원정보"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+            <TextView
+            android:id="@+id/personalId"
+            android:layout_width="130dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/mypageTitle"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="40dp"
+            android:text="아이디/이메일"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/personalIdContents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/personalId"
+            android:layout_alignBottom="@+id/personalId"
+            android:layout_margin="10dip"
+            android:layout_marginTop="20dip"
+            android:layout_toRightOf="@+id/personalId"
+            android:text=""
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/personalNick"
+            android:layout_width="130dip"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/personalNickContents"
+            android:layout_alignBottom="@+id/personalNickContents"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="닉네임"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/personalNickContents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/personalIdContents"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_toRightOf="@+id/personalNick"
+            android:text=""
+            android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/update_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_alignBottom="@+id/mypageTitle"
+                android:layout_marginLeft="135dp"
+                android:text="수정" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/part1"
+            android:layout_marginTop="52dp"
+            android:background="@color/colorAccent"
+            android:padding="5dip"
+            android:text="저장된 영상"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/myText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/video"
+            android:layout_marginTop="2dp"
+            android:background="@color/colorAccent"
+            android:padding="5dip"
+            android:text="내가 쓴 글"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/myComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/myText"
+            android:layout_marginTop="2dp"
+            android:background="@color/colorAccent"
+            android:padding="5dip"
+            android:text="내가 쓴 댓글"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>

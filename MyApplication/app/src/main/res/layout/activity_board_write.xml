@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_questionWrite"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <Button
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dip"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="8dip"
+        android:onClick="questionWrite_cancel"
+        android:text="뒤로" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dip"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/imageButton"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:onClick="questionWrite_upload"
+        android:text="작성완료"
+        android:id="@+id/button" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint = "제목을 입력하세요."
+        android:layout_below="@+id/toolbar_questionWrite"
+        android:id = "@+id/question_sub"
+        android:textSize = "18dip"
+        android:layout_marginLeft = "5dip"
+        android:layout_marginTop = "10dip"
+        android:background="@null"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_below="@+id/question_sub"
+        android:layout_marginTop = "10dip"
+        android:id = "@+id/title_line"
+        android:background="@color/colorAccent"/>
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="300dip"
+        android:layout_height="100dip"
+        android:layout_below="@+id/title_line"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint = "내용을 입력하세요."
+        android:id = "@+id/question_desc"
+        android:background="@null"
+        android:textSize = "18dip"
+        android:layout_marginLeft = "5dip"
+        android:layout_marginTop = "10dip"
+        android:layout_below = "@+id/videoView"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/question_desc"
+        android:layout_centerHorizontal="true"
+        android:id = "@+id/question_image"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:id = "@+id/cameraLine"
+        android:layout_alignParentBottom="true"
+        android:onClick="uploadPhoto"
+        >
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_below="@+id/cameraLine"
+        android:background="@color/colorAccent"
+        />
+
+
+</RelativeLayout>
