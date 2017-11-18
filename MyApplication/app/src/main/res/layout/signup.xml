@@ -78,13 +78,39 @@
                 android:hint="Password check"/>
         </android.support.design.widget.TextInputLayout>
         <!-- Push notification check label -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Major"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"/>
+            <Spinner
+                android:id="@+id/major_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary">
+            </Spinner>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/colorAccent"/>
+
+        </LinearLayout>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Push Notification"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:layout_marginTop="8dp"/>
            <RadioGroup
+               android:id="@+id/Notigroup"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content">
                <RadioButton
