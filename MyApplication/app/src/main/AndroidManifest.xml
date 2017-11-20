@@ -35,6 +35,8 @@
             android:name=".BoardDetailActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".BoardSearchActivity"></activity>
+        <activity android:name=".Category_detail"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
