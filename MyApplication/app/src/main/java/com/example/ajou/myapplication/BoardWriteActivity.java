@@ -55,8 +55,9 @@ public class BoardWriteActivity extends AppCompatActivity {
         s_sub = sub.getText().toString();
         s_desc = desc.getText().toString();
 
+        //수정필요
         //s_user = log.userId;
-        s_user="";
+        s_user="1";
 
         InsertData task = new InsertData();
         task.execute(s_sub,s_desc,s_user);
@@ -134,16 +135,18 @@ public class BoardWriteActivity extends AppCompatActivity {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
+                String data = "";
                 StringBuilder sb = new StringBuilder();
                 String line = null;
 
                 while ((line = bufferedReader.readLine()) != null) {
                     sb.append(line);
                 }
+                data = sb.toString().trim();
 
                 bufferedReader.close();
 
-                Log.d("디비 성공", "디비성공함");
+                Log.d("디비 성공", "디비성공함"+data);
                 return sb.toString();
 
 
