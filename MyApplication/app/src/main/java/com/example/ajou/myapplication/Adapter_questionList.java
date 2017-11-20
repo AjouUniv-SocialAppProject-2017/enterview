@@ -38,7 +38,7 @@ public class Adapter_questionList  extends RecyclerView.Adapter<Adapter_question
     public void onBindViewHolder(Adapter_questionList.ViewHolder holder, int position) {
 
         final Question_item item=items.get(position);
-        holder.question.setText(position+"째 질문입니다");
+        holder.question.setText((position+1)+"번째 질문입니다");
 
         final int posi = holder.getAdapterPosition();
 

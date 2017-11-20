@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,6 +19,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText input_email;
     EditText input_password;
     String email, password;
+    String cookies;
 
     public static String userId;
 
@@ -85,10 +90,13 @@ public class LoginActivity extends AppCompatActivity {
                 /* 서버연결 */
                 URL url = new URL("http://52.41.114.24/enterview/logIn.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 conn.setDoInput(true);
                 conn.connect();
+
+
 
                 /* 안드로이드 -> 서버 파라메터값 전달 */
                 OutputStream outs = conn.getOutputStream();
@@ -119,7 +127,15 @@ public class LoginActivity extends AppCompatActivity {
                     Log.e("RESULT", "성공적으로 처리되었습니다!"+data+"data");
                     //Toast.makeText(getApplicationContext(), "완료", Toast.LENGTH_SHORT).show();
                     userId = data;
+                    String cookieTemp = conn.getHeaderField("Set-Cookie");
+                    if(cookieTemp != null){
+                        cookies = cookieTemp;
+                        Log.e("RESULT", "쿠키"+cookies);
+
+                    }
+
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("cookies",cookies);
                     startActivity(intent);
 
                 } else { // 로그인 실패 , 다시 확인하라고 알림창 띄우기
