@@ -14,179 +14,112 @@
         android:layout_alignParentTop="true"
         android:orientation="horizontal"
         android:padding="5dip">
-
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/part1"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/mypageTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="26dp"
+            android:background="@color/colorPrimary"
+            android:padding="5dip"
+            android:text="회원정보"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/mypageTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:background="@color/colorPrimary"
-                android:padding="5dip"
-                android:text="회원정보"
-                android:textAlignment="center"
-                android:textSize="24sp" />
+            android:id="@+id/personalId"
+            android:layout_width="130dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/mypageTitle"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="40dp"
+            android:text="아이디/이메일"
+            android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/personalId"
-                android:layout_width="60dip"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/update_btn"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="19dp"
-                android:layout_toEndOf="@+id/update_btn"
-                android:layout_toRightOf="@+id/update_btn"
-                android:text="이메일"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
+        <TextView
+            android:id="@+id/personalIdContents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/personalId"
+            android:layout_alignBottom="@+id/personalId"
+            android:layout_margin="10dip"
+            android:layout_marginTop="20dip"
+            android:layout_toRightOf="@+id/personalId"
+            android:text=""
+            android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/personalIdContents"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/personalId"
-                android:layout_alignBottom="@+id/personalId"
-                android:layout_margin="10dip"
-                android:layout_marginTop="20dip"
-                android:layout_toRightOf="@+id/personalId"
-                android:text=""
-                android:textSize="18sp" />
+        <TextView
+            android:id="@+id/personalNick"
+            android:layout_width="130dip"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/personalNickContents"
+            android:layout_alignBottom="@+id/personalNickContents"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="닉네임"
+            android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/personalNickContents"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/personalNick"
-                android:layout_alignBottom="@+id/personalNick"
-                android:layout_margin="10dip"
-                android:layout_marginTop="20dip"
-                android:layout_toRightOf="@+id/personalNick"
-                android:text=""
-                android:textSize="18sp" />
+        <TextView
+            android:id="@+id/personalNickContents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/personalIdContents"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_toRightOf="@+id/personalNick"
+            android:text=""
+            android:textSize="18sp" />
 
-            <ImageView
+            <Button
                 android:id="@+id/update_btn"
-                android:layout_width="84dp"
-                android:layout_height="95dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/mypageTitle"
-                android:layout_margin="25dp"
-                android:text="수정"
-                app:srcCompat="@drawable/user" />
-
-            <TextView
-                android:id="@+id/personalNick"
-                android:layout_width="60dip"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/personalId"
-                android:layout_alignStart="@+id/personalId"
-                android:layout_below="@+id/personalIdContents"
-                android:text="닉네임"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/part1"
-            android:id="@+id/part2">
-
-            <TextView
-                android:id="@+id/video"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:background="@color/colorPrimary"
-                android:padding="5dip"
-                android:text="저장된 영상"
-                android:textAlignment="center"
-                android:textSize="24sp" />
-
-
-            <GridLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/video">
+                android:layout_height="38dp"
+                android:layout_alignBottom="@+id/mypageTitle"
+                android:layout_marginLeft="135dp"
+                android:text="수정" />
+        </LinearLayout>
 
-                <ImageButton
-                    android:id="@+id/imageButton4"
-                    android:layout_width="100dip"
-                    android:layout_height="80dip"
-                    app:srcCompat="@android:drawable/ic_media_play" />
-
-                <ImageButton
-                    android:id="@+id/imageButton3"
-                    android:layout_width="100dip"
-                    android:layout_height="80dip"
-                    app:srcCompat="@android:drawable/ic_media_play" />
-
-                <ImageButton
-                    android:id="@+id/imageButton2"
-                    android:layout_width="100dip"
-                    android:layout_height="80dip"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    app:srcCompat="@android:drawable/ic_media_play" />
-            </GridLayout>
-
-
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
+        <TextView
+            android:id="@+id/video"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/part2"
-            android:id="@+id/part3">
-            <TextView
-                android:id="@+id/myText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="2dp"
-                android:background="@color/colorPrimary"
-                android:padding="5dip"
-                android:text="내가 쓴 글"
-                android:textAlignment="center"
-                android:textSize="24sp" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/myText"
-                android:padding="5dip">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="2017-11-17 자기소개
-2017-11-20 지원동기"
-                    android:textSize="16sp"/>
-            </LinearLayout>
-        </RelativeLayout>
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/part1"
+            android:layout_marginTop="52dp"
+            android:background="@color/colorPrimary"
+            android:padding="5dip"
+            android:text="저장된 영상"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/myText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/part3"
-            android:id="@+id/part4">
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/video"
+            android:layout_marginTop="2dp"
+            android:background="@color/colorPrimary"
+            android:padding="5dip"
+            android:text="내가 쓴 글"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/myComment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_below="@+id/myText"
             android:layout_marginTop="2dp"
             android:background="@color/colorPrimary"
             android:padding="5dip"
@@ -194,23 +127,9 @@
             android:textAlignment="center"
             android:textSize="24sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/myComment"
-                android:padding="5dip">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="2017-11-15 자신감 있는 목소리가 좋으시네요!
-2017-11-17 와.. 좋아요
-2017-11-17 첫 부분을 이렇게 바꿔보는 것은 어떨
-2017-11-20 프로젝트 소개가 부족해보여요"
-                    android:textSize="16sp"/>
-            </LinearLayout>
 
-        </RelativeLayout>
     </RelativeLayout>
+
 
 
 </RelativeLayout>
