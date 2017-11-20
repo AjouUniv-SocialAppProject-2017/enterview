@@ -33,6 +33,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".BoardDetailActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:screenOrientation="portrait" />
         <activity android:name=".BoardSearchActivity"></activity>
         <activity android:name=".Category_detail"

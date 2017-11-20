@@ -60,16 +60,14 @@
         android:layout_height="1dip"
         android:layout_below = "@+id/questionD_title"
         android:layout_marginTop = "5dip"
-        android:background="@color/colorAccent"
-        android:id="@+id/view" />
+        android:background="@color/colorPrimary"
+        android:id="@+id/line" />
 
         <ImageView
             android:id="@+id/questionD_image"
             android:layout_width="match_parent"
             android:layout_height="250dip"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/view"
-            android:layout_marginTop="5dip"
+            android:layout_below="@+id/questionD_title"
             app:srcCompat="@android:drawable/ic_media_play" />
 
     <TextView
@@ -88,16 +86,27 @@
         android:background="@color/colorAccent"
         android:layout_marginTop = "30dip"
         android:layout_below="@+id/questionD_desc"
-        android:id="@+id/view2" />
+        android:id="@+id/line2" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/view2"
+        android:layout_alignTop="@+id/line2"
         android:layout_alignParentLeft="true"
         android:backgroundTint="@color/colorAccent"
+        android:text="댓글내용"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15dip"
         android:id="@+id/question_comment"
         android:layout_toLeftOf="@+id/question_comment_upload" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_below = "@+id/question_comment"
+
+        android:background="@color/colorPrimary"
+        android:id="@+id/line3" />
 
     <Button
         android:layout_width="65dip"
