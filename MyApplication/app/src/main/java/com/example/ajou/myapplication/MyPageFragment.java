@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 /**
@@ -16,7 +17,7 @@ import android.widget.RelativeLayout;
 // mypage fragment
 public class MyPageFragment extends Fragment {
 
-    Button updateBtn;
+    ImageView updateBtn;
 
 /*    public MyPageFragment()
     {
@@ -36,7 +37,7 @@ public class MyPageFragment extends Fragment {
         RelativeLayout layout = (RelativeLayout)inflater.inflate(R.layout.my_page,
                 container, false);
 
-        updateBtn = (Button) layout.findViewById(R.id.update_btn);
+        updateBtn = (ImageView) layout.findViewById(R.id.update_btn);
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
