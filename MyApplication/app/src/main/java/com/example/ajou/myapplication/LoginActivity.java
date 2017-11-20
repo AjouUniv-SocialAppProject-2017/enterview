@@ -77,12 +77,12 @@ public class LoginActivity extends AppCompatActivity {
         protected Void doInBackground(Void... unused) {
 
             /* 인풋 파라메터값 생성 */
-            String param = "email=" + email + "&pw=" + password ;
+            String param = "email=" + email + "&password=" + password ;
 
             Log.e("POST", param);
             try {
                 /* 서버연결 */
-                URL url = new URL("http://52.41.114.24/logIn.php");
+                URL url = new URL("http://52.41.114.24/enterview/logIn.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
@@ -111,10 +111,12 @@ public class LoginActivity extends AppCompatActivity {
 
                 /* 서버에서 응답 */
                 Log.e("RECV DATA", data);
+                Log.e("RESULT", data);
 
-                if (!(data.equals("0"))) {
+                //데이터 왜 다 0으로 들어옴..? 개짱남..
+                if (!(data.equals("0"))||Integer.parseInt(data)!=0) {
 
-                    Log.e("RESULT", "성공적으로 처리되었습니다!");
+                    Log.e("RESULT", "성공적으로 처리되었습니다!"+data+"data");
                     //Toast.makeText(getApplicationContext(), "완료", Toast.LENGTH_SHORT).show();
                     userId = data;
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
