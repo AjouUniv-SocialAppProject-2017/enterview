@@ -113,7 +113,6 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("RECV DATA", data);
                 Log.e("RESULT", data);
 
-                //데이터 왜 다 0으로 들어옴..? 개짱남..
                 if (!(data.equals("0"))||Integer.parseInt(data)!=0) {
 
                     Log.e("RESULT", "성공적으로 처리되었습니다!"+data+"data");

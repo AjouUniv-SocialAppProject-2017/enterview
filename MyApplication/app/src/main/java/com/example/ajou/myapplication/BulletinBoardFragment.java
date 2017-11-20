@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import org.json.JSONObject;
@@ -28,7 +29,9 @@ public class BulletinBoardFragment extends Fragment {
     Board_item board_item;
     private RecyclerView.LayoutManager layoutManager_board;
     public static String[] listBoardId = new String[100];
+
     private FloatingActionButton uploadBtn;
+    private ImageButton searchBtn;
 
 /*
     public BulletinBoardFragment()
@@ -62,7 +65,7 @@ public class BulletinBoardFragment extends Fragment {
         uploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), WriteActivity.class);
+                Intent intent = new Intent(getContext(), BoardWriteActivity.class);
                 startActivity(intent);
             }
         });
@@ -78,6 +81,16 @@ public class BulletinBoardFragment extends Fragment {
         Adapter_board = new Adapter_boardList(getActivity(), board_items, 1);
         boardView.setAdapter(Adapter_board);
 
+        //검색버튼 클릭 시, 검색 액티비티로 이동
+        searchBtn = (ImageButton)view.findViewById(R.id.searchBtn);
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), BoardSearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
         /*데이터 받아오기?
         GetData task = new GetData();
         GetQuestionData task_q = new GetQuestionData();
@@ -85,6 +98,7 @@ public class BulletinBoardFragment extends Fragment {
         task_q.execute("http://52.41.114.24/questionList.php");*/
         return view;
     }
+
 }
 
 
