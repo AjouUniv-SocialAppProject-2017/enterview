@@ -69,10 +69,8 @@ public class BoardDetailActivity extends AppCompatActivity {
 
         QuestionReview = (RecyclerView) findViewById(R.id.board_comment);
         QuestionReview.setHasFixedSize(true);
-
-        showReviewResult();
-
         layoutManager_questionReview = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        showReviewResult();
 
     }
 
