@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop = "10dip"
     android:background="#FFFFFF"
-   >
+    android:padding="5dip">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,8 +16,9 @@
             android:id="@+id/proud_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dip"
+            android:padding="10dip"
             android:text="제목"
+            android:textColor="@color/colorPrimary"
             android:textSize="13dip" />
 
         <TextView
@@ -26,7 +27,7 @@
             android:id = "@+id/proud_name"
             android:textSize = "13dip"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dip"
+            android:padding="10dip"
             android:text = "닉네임"/>
 
     </RelativeLayout>
@@ -51,6 +52,7 @@
         android:id="@+id/proud_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dip"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/proud_imageL"
@@ -65,7 +67,7 @@
         android:id="@+id/proud_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="6dip"
+        android:layout_marginRight="10dip"
         android:layout_alignParentRight="true"
         android:text="날짜"
         android:textSize="12dip" />
@@ -90,6 +92,7 @@
             android:layout_marginRight="10dip"
             android:clickable="true"
             android:text="댓글 0개"
+            android:textColor="@color/colorPrimary"
             android:textSize="12dip" />
 
     </RelativeLayout>

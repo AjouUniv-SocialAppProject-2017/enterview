@@ -170,8 +170,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="2017-11-17 자기소개
-2017-11-20 지원동기"
+                    android:text="2017-11-17 자기소개\n2017-11-20 지원동기"
                     android:textSize="16sp"/>
             </LinearLayout>
         </RelativeLayout>
@@ -202,10 +201,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="2017-11-15 자신감 있는 목소리가 좋으시네요!
-2017-11-17 와.. 좋아요
-2017-11-17 첫 부분을 이렇게 바꿔보는 것은 어떨
-2017-11-20 프로젝트 소개가 부족해보여요"
+                    android:text="2017-11-15 자신감 있는 목소리가 좋으시네요!\n2017-11-17 와.. 좋아요\n2017-11-17 첫 부분을 이렇게 바꿔보는 것은"
                     android:textSize="16sp"/>
             </LinearLayout>
 

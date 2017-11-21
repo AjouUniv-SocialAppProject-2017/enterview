@@ -38,7 +38,7 @@ public class BoardDetailActivity extends AppCompatActivity {
     public TextView date,title,desc,nick;
     public ImageView image;
 
-    public String questionId;
+    public String boardId;
     EditText reviewText;
     LoginActivity log ;
 
@@ -59,7 +59,7 @@ public class BoardDetailActivity extends AppCompatActivity {
         log = new LoginActivity();
 
         Intent intent = this.getIntent();
-        questionId = intent.getStringExtra("itemId");
+        boardId = intent.getStringExtra("itemId");
 
 /*        GetReviewData taskR = new GetReviewData();
         taskR.execute(questionId);
@@ -81,15 +81,17 @@ public class BoardDetailActivity extends AppCompatActivity {
 
     public void uploadReview (View v){
 
-        /*String desc = reviewText.getText().toString();
-        String id = log.userId;
+        String desc = reviewText.getText().toString();
+        //수정필요
+        //String id = log.userId;
+        String id = "1";
 
         reviewText.setText(null);
 
         InsertReviewData taskI = new InsertReviewData();
-        taskI.execute(questionId,id, desc);
+        taskI.execute(boardId,id, desc);
 
-        GetReviewData taskR = new GetReviewData();
+        /*GetReviewData taskR = new GetReviewData();
         taskR.execute(questionId);*/
 
     }
@@ -191,7 +193,7 @@ public class BoardDetailActivity extends AppCompatActivity {
 
     }*/
 
-    /*class InsertReviewData extends AsyncTask<String, Void, String> {
+    class InsertReviewData extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPreExecute() {
@@ -207,13 +209,13 @@ public class BoardDetailActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String qstliId = (String) params[0];
-            String qstcmUserId = (String) params[1];
-            String qstcmContents = (String) params[2];
+            String boardId = (String) params[0];
+            String brdcmUserId = (String) params[1];
+            String brdcmContents = (String) params[2];
 
-            String serverURL = "http://52.41.114.24/questionReview.php";
-            String postParameters = "qstliId=" + qstliId + "&qstcmUserId=" + qstcmUserId
-                    + "&qstcmContents=" + qstcmContents;
+            String serverURL = "http://52.41.114.24/enterview/boardReview.php";
+            String postParameters = "boardId=" + boardId + "&brdcmUserId=" + brdcmUserId
+                    + "&brdcmContents=" + brdcmContents;
 
             Log.d("이거임 This", "" + postParameters);
 
@@ -264,7 +266,7 @@ public class BoardDetailActivity extends AppCompatActivity {
         }
     }
 
-    private class GetReviewData extends AsyncTask<String, Void, String> {
+    /*private class GetReviewData extends AsyncTask<String, Void, String> {
 
         String errorString = null;
 
