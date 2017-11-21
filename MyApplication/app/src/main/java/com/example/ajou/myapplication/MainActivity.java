@@ -1,5 +1,6 @@
 package com.example.ajou.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * Created by ajou on 2017-11-08.
@@ -23,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+        final String cookies = intent.getExtras().getString("cookies");
+        Toast.makeText(getApplicationContext(),cookies,Toast.LENGTH_LONG).show();
         pager = (ViewPager)findViewById(R.id.pager);
         category= (Button)findViewById(R.id.btn_category);
         bulletin = (Button)findViewById(R.id.btn_bulletin);
