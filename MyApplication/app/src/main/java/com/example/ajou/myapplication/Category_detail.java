@@ -40,7 +40,8 @@ public class Category_detail extends AppCompatActivity {
         record_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),category_num+"번쨰 리스트",Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(),category_num+"번쨰 리스트",Toast.LENGTH_LONG).show();
+
             }
         });
 
