@@ -18,7 +18,6 @@ public class Adapter_questionList  extends RecyclerView.Adapter<Adapter_question
     Context context;
     List<Question_item> items;
     int item_layout;
-
     //Category_detail activity = new Category_detail();
 
     public Adapter_questionList(Context context, List<Question_item> items, int item_layout) {

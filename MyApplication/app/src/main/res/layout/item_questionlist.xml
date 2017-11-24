@@ -6,22 +6,16 @@
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
     android:layout_marginRight="8dp"
-    android:layout_marginLeft="8dp"
-    android:background="@color/colorPrimary">
-<TextView
+    android:layout_marginLeft="8dp">
+<Button
     android:id="@+id/question"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textColor="@color/colorAccent"
-    android:background="@color/colorPrimary"/>
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
-<CheckBox
-    android:id="@+id/question_check"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"/>
+    android:textColor="@color/colorPrimary"
+    android:paddingLeft="8dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:background="@drawable/selector_question"
+    />
 
 </LinearLayout>

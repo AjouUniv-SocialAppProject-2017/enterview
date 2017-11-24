@@ -19,7 +19,7 @@
        android:layout_weight="1"
        android:layout_marginLeft="8dp"
        android:layout_marginRight="8dp"
-       android:background="@color/colorAccent"
+       android:background="@drawable/rounded"
        android:text="직무"
        android:textSize="20dp"
        android:textColor="@color/colorPrimary"/>
@@ -30,7 +30,7 @@
        android:layout_weight="1"
        android:layout_marginLeft="8dp"
        android:layout_marginRight="8dp"
-       android:background="@color/colorAccent"
+       android:background="@drawable/rounded"
        android:textSize="20dp"
        android:text="직무"
        android:textColor="@color/colorPrimary"/>
@@ -41,7 +41,7 @@
        android:layout_weight="1"
        android:layout_marginLeft="8dp"
        android:layout_marginRight="8dp"
-       android:background="@color/colorAccent"
+       android:background="@drawable/rounded"
        android:textSize="20dp"
        android:text="직무"
        android:textColor="@color/colorPrimary"/>
@@ -62,7 +62,7 @@
       android:layout_weight="1"
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
-      android:background="@color/colorAccent"
+      android:background="@drawable/rounded"
       android:text="직무"
       android:textSize="20dp"
       android:textColor="@color/colorPrimary"/>
@@ -72,7 +72,7 @@
       android:layout_weight="1"
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
-      android:background="@color/colorAccent"
+      android:background="@drawable/rounded"
       android:text="Queston"
       android:gravity="center"
       android:textSize="20dp"
@@ -84,7 +84,7 @@
       android:layout_weight="1"
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
-      android:background="@color/colorAccent"
+      android:background="@drawable/rounded"
       android:text="직무"
       android:textSize="20dp"
       android:textColor="@color/colorPrimary"/>
@@ -104,7 +104,7 @@
       android:layout_weight="1"
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
-      android:background="@color/colorAccent"
+      android:background="@drawable/rounded"
       android:text="직무"
       android:textSize="20dp"
       android:textColor="@color/colorPrimary"/>
@@ -115,7 +115,7 @@
       android:layout_weight="1"
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
-      android:background="@color/colorAccent"
+      android:background="@drawable/rounded"
       android:text="직무"
       android:textSize="20dp"
       android:textColor="@color/colorPrimary"/>
@@ -126,7 +126,7 @@
       android:layout_weight="1"
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
-      android:background="@color/colorAccent"
+      android:background="@drawable/rounded"
       android:text="직무"
       android:textSize="20dp"
       android:textColor="@color/colorPrimary"/>
