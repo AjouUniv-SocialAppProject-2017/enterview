@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 /**
@@ -17,9 +18,8 @@ import android.widget.Toast;
 // 여기가 로그인 후 나오게 되는 메인 액티비티
 public class MainActivity extends AppCompatActivity {
     ViewPager pager;
-    Button category; // 녹화 탭 버튼
-    Button bulletin; // 게시판 탭 버튼
-    Button myPage; // 마이페이지 탭 버튼
+    ImageButton category, bulletin, myPage; //탭 버튼
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
         final String cookies = intent.getExtras().getString("cookies");
         Toast.makeText(getApplicationContext(),cookies,Toast.LENGTH_LONG).show();
         pager = (ViewPager)findViewById(R.id.pager);
-        category= (Button)findViewById(R.id.btn_category);
-        bulletin = (Button)findViewById(R.id.btn_bulletin);
-        myPage = (Button)findViewById(R.id.btn_mypage);
+        category= (ImageButton)findViewById(R.id.btn_category);
+        bulletin = (ImageButton)findViewById(R.id.btn_bulletin);
+        myPage = (ImageButton)findViewById(R.id.btn_mypage);
 
         pager.setAdapter(new pagerAdapter(getSupportFragmentManager()));
         pager.setCurrentItem(1); // 게시판이 첫 화면으로 설정
