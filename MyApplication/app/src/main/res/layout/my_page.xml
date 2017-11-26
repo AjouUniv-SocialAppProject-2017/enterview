@@ -30,6 +30,7 @@
                 android:background="@color/colorPrimary"
                 android:padding="5dip"
                 android:text="회원정보"
+                android:textColor="@color/colorAccent"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -110,6 +111,7 @@
                 android:background="@color/colorPrimary"
                 android:padding="5dip"
                 android:text="저장된 영상"
+                android:textColor="@color/colorAccent"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
@@ -160,6 +162,7 @@
                 android:background="@color/colorPrimary"
                 android:padding="5dip"
                 android:text="내가 쓴 글"
+                android:textColor="@color/colorAccent"
                 android:textAlignment="center"
                 android:textSize="24sp" />
             <LinearLayout
@@ -190,6 +193,7 @@
             android:background="@color/colorPrimary"
             android:padding="5dip"
             android:text="내가 쓴 댓글"
+            android:textColor="@color/colorAccent"
             android:textAlignment="center"
             android:textSize="24sp" />
 

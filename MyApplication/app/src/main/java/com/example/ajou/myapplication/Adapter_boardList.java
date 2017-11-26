@@ -39,7 +39,6 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
 
         final Board_item item=items.get(position);
 
-        holder.date.setText(item.getDate());
         holder.name.setText(item.getName());
         holder.title.setText(item.getTitle());
         holder.comment.setText(item.getComment());
@@ -75,7 +74,6 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
         public ViewHolder(View itemView) {
 
             super(itemView);
-            date = (TextView)itemView.findViewById(R.id.proud_date);
             name=(TextView)itemView.findViewById(R.id.proud_name);
             title = (TextView)itemView.findViewById(R.id.proud_title);
             comment = (TextView)itemView.findViewById(R.id.proud_comment);

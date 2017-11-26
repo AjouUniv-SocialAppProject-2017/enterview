@@ -41,6 +41,8 @@ public class Category_detail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                // Toast.makeText(getApplicationContext(),category_num+"번쨰 리스트",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), BoardWriteActivity.class);
+                startActivity(intent);
 
             }
         });

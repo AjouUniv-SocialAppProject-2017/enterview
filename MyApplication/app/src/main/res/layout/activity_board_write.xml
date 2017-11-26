@@ -4,70 +4,42 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_questionWrite"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-    <Button
-        android:id="@+id/backBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="40dip"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dip"
-        android:layout_marginTop="8dip"
-        android:onClick="write_cancel"
-        android:text="뒤로" />
-
-    <EditText
+    android:padding="8dp"
+    android:background="@color/colorPrimary">
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint = "제목을 입력하세요."
-        android:layout_below="@+id/toolbar_questionWrite"
-        android:id = "@+id/sub"
-        android:textSize = "18dip"
-        android:layout_marginLeft = "5dip"
-        android:layout_marginTop = "10dip"
-        android:background="@null"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dip"
-        android:layout_below="@+id/sub"
-        android:layout_marginTop = "10dip"
-        android:id = "@+id/title_line"
-        android:background="@color/colorAccent"/>
+        android:layout_above="@+id/saveBtn"
+        android:background="@drawable/rounded">
 
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="300dip"
-        android:layout_height="100dip"
-        android:layout_below="@+id/title_line"
+        android:layout_height="150dip"
+        android:layout_margin="8dp"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id = "@+id/sub"
+        android:layout_below="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint = "제목"
+        android:textSize = "18dip"
+        android:layout_margin="8dp"
+        android:background="@null"/>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:hint = "내용을 입력하세요."
+        android:textAlignment="center"
         android:id = "@+id/desc"
         android:background="@null"
         android:textSize = "18dip"
-        android:layout_marginLeft = "5dip"
-        android:layout_marginTop = "10dip"
-        android:layout_below = "@+id/videoView"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/desc"
-        android:layout_centerHorizontal="true"
-        android:id = "@+id/question_image"
-        />
+        android:layout_margin="8dp"
+        android:layout_below = "@+id/sub"/>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/saveBtn"
@@ -85,5 +57,7 @@
         android:textAlignment="center">
 
     </TextView>
+
+
 
 </RelativeLayout>

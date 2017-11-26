@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -30,7 +31,8 @@ import java.util.Date;
  */
 public class BoardWriteActivity extends AppCompatActivity {
 
-    EditText sub, desc;
+    TextView sub;
+    EditText desc;
     private LoginActivity log;
 
     String s_desc,s_sub,s_user;
@@ -44,7 +46,7 @@ public class BoardWriteActivity extends AppCompatActivity {
 
         log = new LoginActivity();
 
-        sub = (EditText) findViewById(R.id.sub);
+        sub = (TextView) findViewById(R.id.sub);
         desc = (EditText) findViewById(R.id.desc);
 
     }

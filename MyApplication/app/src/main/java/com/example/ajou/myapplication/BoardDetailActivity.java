@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +37,7 @@ public class BoardDetailActivity extends AppCompatActivity {
     String mJsonString,qstSubject,qstContents,qstDate;
 
     public TextView date,title,desc,nick;
-    public ImageView image;
+    public VideoView video;
 
     public String boardId;
     EditText reviewText;
@@ -49,10 +50,9 @@ public class BoardDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_detail);
 
-        date = (TextView) findViewById(R.id.questionD_date);
         title = (TextView) findViewById(R.id.questionD_title);
         desc = (TextView) findViewById(R.id.questionD_desc);
-        image = (ImageView) findViewById(R.id.questionD_image);
+        video = (VideoView) findViewById(R.id.questionD_image);
 
         reviewText = (EditText) findViewById(R.id.question_comment);
 

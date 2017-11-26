@@ -4,77 +4,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="#ffffff"
-    android:layout_height="match_parent">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_proudWrite"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-    <Button
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="40dip"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dip"
-        android:layout_marginTop="8dip"
-        android:onClick="proudWrite_cancel"
-        android:text="뒤로" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar_proudWrite">
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:background="@color/colorPrimary">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:background="@drawable/rounded"
+        android:padding="8dp">
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
     <TextView
+        android:id = "@+id/questionD_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id = "@+id/questionD_date"
-        android:text="날짜"
-        android:layout_margin = "10dip"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/questionD_date"
+        android:layout_margin="8dp"
         android:textSize="15dip"
         android:textStyle="bold"
-        android:layout_marginLeft="20dip"
-        android:id = "@+id/questionD_title"
-        android:text="제목"
-        android:layout_alignLeft="@+id/questionD_date" />
+        android:text="제목"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_below = "@+id/questionD_title"
-        android:layout_marginTop = "5dip"
         android:background="@color/colorPrimary"
         android:id="@+id/line" />
 
-        <ImageView
+        <VideoView
             android:id="@+id/questionD_image"
             android:layout_width="match_parent"
             android:layout_height="250dip"
-            android:layout_below="@+id/questionD_title"
+            android:layout_below="@+id/line"
             app:srcCompat="@android:drawable/ic_media_play" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/questionD_image"
-        android:layout_margin = "10dip"
+        android:layout_margin = "8dip"
         android:id = "@+id/questionD_desc"
         android:text="내용"
         android:layout_marginTop = "10dip"
@@ -93,9 +68,10 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/line2"
         android:layout_alignParentLeft="true"
+        android:layout_margin="5dp"
         android:backgroundTint="@color/colorAccent"
-        android:text="댓글내용"
-        android:textColor="@color/colorPrimary"
+        android:hint="댓글내용"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="15dip"
         android:id="@+id/question_comment"
         android:layout_toLeftOf="@+id/question_comment_upload" />
@@ -104,7 +80,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_below = "@+id/question_comment"
-
         android:background="@color/colorPrimary"
         android:id="@+id/line3" />
 
@@ -112,25 +87,28 @@
         android:layout_width="65dip"
         android:layout_height="30dip"
         android:id = "@+id/question_comment_upload"
-        android:text = "댓글달기"
-        android:textSize = "10dip"
+        android:text = "입력"
+        android:textColor="@color/colorAccent"
+        android:textSize = "12dip"
+        android:textAlignment="center"
         android:layout_marginRight="5dip"
         android:background="@color/colorPrimary"
         android:onClick="uploadReview"
         android:layout_alignBottom="@+id/question_comment"
+        android:layout_alignTop="@+id/line2"
         android:layout_alignParentRight="true" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/question_comment_upload"
+        android:layout_below="@+id/line3"
         android:id = "@+id/board_comment">
-
     </android.support.v7.widget.RecyclerView>
 
     </RelativeLayout>
 
     </ScrollView>
+    </RelativeLayout>
 
 
 </RelativeLayout>

@@ -29,8 +29,6 @@ public class BulletinBoardFragment extends Fragment {
     Board_item board_item;
     private RecyclerView.LayoutManager layoutManager_board;
     public static String[] listBoardId = new String[100];
-
-    private FloatingActionButton uploadBtn;
     private ImageButton searchBtn;
 
 /*
@@ -59,16 +57,6 @@ public class BulletinBoardFragment extends Fragment {
         boardView.setHasFixedSize(true);
 
         layoutManager_board = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-
-        uploadBtn = (FloatingActionButton) view.findViewById(R.id.upload_btn);
-
-        uploadBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), BoardWriteActivity.class);
-                startActivity(intent);
-            }
-        });
 
         //게시글 ArrayList
         ArrayList<Board_item> board_items = new ArrayList<>();
