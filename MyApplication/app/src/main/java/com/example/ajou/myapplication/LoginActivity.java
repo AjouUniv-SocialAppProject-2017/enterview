@@ -1,7 +1,18 @@
 package com.example.ajou.myapplication;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.PermissionChecker;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +20,7 @@ import android.view.View;
 import android.webkit.CookieManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -19,11 +31,19 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private Activity mainActivity = this;
+
+    private static final int REQUEST_MICROPHONE = 3;
+    private static final int REQUEST_EXTERNAL_STORAGE = 2;
+    private static final int REQUEST = 1;
+
 
     Button loginBtn;
     Button signupBtn;
@@ -31,6 +51,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText input_password;
     String email, password;
     String cookies;
+    String s = null;
+    String s2 = "";
 
     public static String userId;
 
@@ -38,15 +60,47 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        // permission check
+        int permissionCamera = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA);
+        int permissionReadStorage = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
+        int permissionWriteStorage = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int permissionAudio = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO);
+
+        if(permissionCamera == PackageManager.PERMISSION_DENIED || permissionReadStorage == PackageManager.PERMISSION_DENIED
+                || permissionWriteStorage == PackageManager.PERMISSION_DENIED || permissionAudio == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(mainActivity, new String[]{Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE
+                    ,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.RECORD_AUDIO}, REQUEST);
+        } else {
+            //Toast.makeText(getApplicationContext(),"camera permission authorized",Toast.LENGTH_SHORT).show();
+            // resultText.setText("camera permission authorized");
+        }
+
         loginBtn = (Button) findViewById(R.id.btn_login);
         signupBtn = (Button) findViewById(R.id.btn_signup);
         input_email = (EditText) findViewById(R.id.input_email);
         input_password = (EditText)findViewById(R.id.input_password);
         // login button 클릭 시 이벤트
         loginBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(View v) {
-                    
+                email = input_email.getText().toString();
+                password = input_password.getText().toString();
+                if(email.equals(s) || email.equals(s2)){
+                    AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+                    alert.setMessage("E-mail을 입력해 주세요");
+                    alert.show();
+                }else if(password.equals(s) || password.equals(s2)){
+                    AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alert.setMessage("Password를 입력해 주세요");
+                    alert.show();
+                }
                     login();
             }
         });
@@ -58,6 +112,42 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST:
+                for (int i = 0; i < permissions.length; i++) {
+                    String permission = permissions[i];
+                    int grantResult = grantResults[i];
+                    if (permission.equals(Manifest.permission.CAMERA)) {
+                        if(grantResult == PackageManager.PERMISSION_GRANTED) {
+                            //resultText.setText("camera permission authorized");
+                        } else {
+                            //resultText.setText("camera permission denied");
+                        }
+                    }
+                    if (permission.equals(Manifest.permission.RECORD_AUDIO)) {
+                        if(grantResult == PackageManager.PERMISSION_GRANTED) {
+                            //resultText.setText("recording audio permission authorized");
+                        } else {
+                            //resultText.setText("recording audio permission denied");
+                        }
+                    }
+                    if (permission.equals(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        if(grantResult == PackageManager.PERMISSION_GRANTED) {
+                            //resultText.setText("read/write storage permission authorized");
+                        } else {
+                            //resultText.setText("read/write storage permission denied");
+                        }
+                    }
+                }
+                break;
+
+        }
     }
 
     //171113 서버test
@@ -65,8 +155,7 @@ public class LoginActivity extends AppCompatActivity {
         // 로그인 구현
         try {
 
-            email = input_email.getText().toString();
-            password = input_password.getText().toString();
+
 
             loginDB lDB = new loginDB();
             lDB.execute();
@@ -75,7 +164,6 @@ public class LoginActivity extends AppCompatActivity {
             Log.e("err", e.getMessage());
         }
     }
-
 
     public class loginDB extends AsyncTask<Void, Integer, Void> {
 
