@@ -3,10 +3,12 @@ package com.example.ajou.myapplication;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -90,17 +92,56 @@ public class SignupActivity extends AppCompatActivity {
                 sNickName = nickname.getText().toString();
                 sMajor = majorSpinner.getSelectedItem().toString();
                 if(sEmail.equals(s) || sEmail.equals(s2)){
-                    Toast.makeText(getApplicationContext(),"E-mail을 입력해 주세요",Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(SignupActivity.this);
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alert.setMessage("E-mail을 입력해 주세요");
+                    alert.show();
                 }else if(sNickName.equals(s) || sNickName.equals(s2)){
-                    Toast.makeText(getApplicationContext(),"Nickname을 입력해 주세요",Toast.LENGTH_LONG).show();
-
+                    AlertDialog.Builder alert = new AlertDialog.Builder(SignupActivity.this);
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alert.setMessage("Nickname을 입력해 주세요");
+                    alert.show();
                 } else if(sPasswd.equals(s) || sPasswd.equals(s2)){
-                    Toast.makeText(getApplicationContext(),"Password를 입력해 주세요",Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(SignupActivity.this);
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alert.setMessage("Password를 입력해 주세요");
+                    alert.show();
                 }else if(sConfPasswd.equals(s) || sConfPasswd.equals(s2)){
-                    Toast.makeText(getApplicationContext(),"Password를 다시 한 번 입력해주세요",Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(SignupActivity.this);
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alert.setMessage("Password를 다시 한 번 입력해 주세요");
+                    alert.show();
                 }else{
                     if( Notiflag == 0){
-                        Toast.makeText(getApplicationContext(),"알림 수신여부를 체크해 주세요",Toast.LENGTH_LONG).show();
+                        AlertDialog.Builder alert = new AlertDialog.Builder(SignupActivity.this);
+                        alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        alert.setMessage("알람 수신 여부를 체크해 주세요");
+                        alert.show();
                     }else {
                         clickSign(v);
                     }
@@ -123,7 +164,15 @@ public class SignupActivity extends AppCompatActivity {
         // 비밀번호 불일치
         else
         {
-            Toast.makeText(getApplicationContext(),"Password가 일치하지 않습니다",Toast.LENGTH_LONG).show();
+            AlertDialog.Builder alert = new AlertDialog.Builder(SignupActivity.this);
+            alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alert.setMessage("Password가 일치 하지 않습니다");
+            alert.show();
         }
     }
 
