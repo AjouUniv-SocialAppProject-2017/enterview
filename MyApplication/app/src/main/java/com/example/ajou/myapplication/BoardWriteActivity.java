@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.media.ThumbnailUtils;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -14,7 +16,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -33,6 +37,7 @@ public class BoardWriteActivity extends AppCompatActivity {
 
     TextView sub;
     EditText desc;
+    VideoView videoView;
     private LoginActivity log;
 
     String s_desc,s_sub,s_user;
@@ -48,6 +53,10 @@ public class BoardWriteActivity extends AppCompatActivity {
 
         sub = (TextView) findViewById(R.id.sub);
         desc = (EditText) findViewById(R.id.desc);
+        videoView = (VideoView) findViewById(R.id.videoView);
+        videoView.setVideoPath("/sdcard/recorded_video.mp4");
+        final MediaController mediaController = new MediaController(this);
+        videoView.setMediaController(mediaController);
 
     }
 

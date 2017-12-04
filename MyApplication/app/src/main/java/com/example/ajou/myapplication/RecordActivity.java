@@ -1,7 +1,10 @@
 package com.example.ajou.myapplication;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.hardware.Camera;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +25,6 @@ public class RecordActivity extends AppCompatActivity {
     SurfaceHolder holder;
     MediaRecorder recorder = null;
     Camera camera;
-
     String path = "/sdcard/recorded_video.mp4";
 
     @Override
@@ -30,6 +32,7 @@ public class RecordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.record_video);
         surfaceView  = (SurfaceView) findViewById(R.id.surfaceView);
+
         Button button = (Button) findViewById(R.id.button);
         Button button2 = (Button) findViewById(R.id.button2);
         holder = surfaceView.getHolder();
@@ -67,13 +70,16 @@ public class RecordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(recorder != null){
-                    Toast.makeText(getApplicationContext(),"ssssss",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),"ssssss",Toast.LENGTH_LONG).show();
                     recorder.stop();
                     recorder.release();
                     recorder= null;
                     camera.stopPreview();
                     camera.release();
                     camera=null;
+
+                    Intent intent = new Intent(RecordActivity.this, BoardWriteActivity.class);
+                    startActivity(intent);
                 }
             }
         });

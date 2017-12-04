@@ -55,8 +55,6 @@ public class Category_detail extends AppCompatActivity {
 
 
         for (int i = 0; i < 10; i++) {
-
-
             question_item.add(new Question_item(i+"번째 질문입니다"));
         }
 

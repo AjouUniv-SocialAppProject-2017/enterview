@@ -66,7 +66,18 @@ public class SignupActivity extends AppCompatActivity {
                 R.array.major_select, android.R.layout.simple_spinner_item);
         majorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         majorSpinner.setAdapter(majorAdapter);
+        // 선택된 major 색 변경
+        majorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView)parent.getChildAt(0)).setTextColor(Color.WHITE);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         Notigroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

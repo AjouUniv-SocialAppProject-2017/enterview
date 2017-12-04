@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="major_select">
-        <item>IT 개발</item>
-        <item>네트워크</item>
-        <item>경영</item>
-        <item>인사</item>
-        <item>IT 전략</item>
+        <item>사무</item>
+        <item>마케팅</item>
+        <item>서비스</item>
+        <item>IT</item>
+        <item>컨설팅</item>
+        <item>전기</item>
+        <item>기계</item>
+        <item>보안</item>
+        <item>제조업</item>
+        <item>건설업</item>
+        <item>생산제조</item>
     </string-array>
 
 </resources>
