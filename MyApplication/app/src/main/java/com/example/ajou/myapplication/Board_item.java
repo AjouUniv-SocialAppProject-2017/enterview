@@ -1,9 +1,8 @@
 package com.example.ajou.myapplication;
 
 /**
- * Created by thfad_000 on 2017-05-05.
- * 프레그먼트 3번째 자랑글 리스트 아이템
- * 날짜, 닉네임, 사진, 글, 좋아요, 댓글
+ * 프레그먼트 2번째 게시판
+ * 날짜, 닉네임, 사진, 글, 별점, 댓글, 제목(질문)
  */
 public class Board_item {
 
