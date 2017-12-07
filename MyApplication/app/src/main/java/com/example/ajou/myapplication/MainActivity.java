@@ -24,10 +24,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        // user information 가져오기
         Intent intent = getIntent();
-        final String cookies = intent.getExtras().getString("cookies");
-        Toast.makeText(getApplicationContext(),cookies,Toast.LENGTH_LONG).show();
+        final String param_email = intent.getExtras().getString("param_email");
+        final String param_nickname = intent.getExtras().getString("param_nickname");
+        final String param_notification = intent.getExtras().getString("param_notification");
+        final String param_major = intent.getExtras().getString("param_major");
+       // Toast.makeText(getApplicationContext(),param_email+"/"+param_nickname+"/"+param_major+"/"+param_notification,Toast.LENGTH_LONG).show();
+
         pager = (ViewPager)findViewById(R.id.pager);
         category= (ImageButton)findViewById(R.id.btn_category);
         bulletin = (ImageButton)findViewById(R.id.btn_bulletin);
