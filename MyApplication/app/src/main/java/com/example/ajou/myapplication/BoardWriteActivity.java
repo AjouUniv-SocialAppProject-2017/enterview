@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.io.BufferedReader;
@@ -51,7 +52,11 @@ public class BoardWriteActivity extends AppCompatActivity {
 
         log = new LoginActivity();
 
+        Intent intent = getIntent();
+        final String question = intent.getExtras().getString("question");
+
         sub = (TextView) findViewById(R.id.sub);
+        sub.setText(question);
         desc = (EditText) findViewById(R.id.desc);
         videoView = (VideoView) findViewById(R.id.videoView);
         videoView.setVideoPath("/sdcard/recorded_video.mp4");
@@ -74,8 +79,9 @@ public class BoardWriteActivity extends AppCompatActivity {
         task.execute(s_sub,s_desc,s_user);
 
         Log.d("이걸봐", "" + s_desc+" "+s_user);
-
-        this.finish();
+        Toast.makeText(getApplicationContext(),"글이 등록되었습니다",Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(BoardWriteActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
 

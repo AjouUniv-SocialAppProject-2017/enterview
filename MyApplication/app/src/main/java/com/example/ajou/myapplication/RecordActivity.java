@@ -12,6 +12,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -26,17 +27,22 @@ public class RecordActivity extends AppCompatActivity {
     MediaRecorder recorder = null;
     Camera camera;
     String path = "/sdcard/recorded_video.mp4";
+    TextView finalquestion;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.record_video);
         surfaceView  = (SurfaceView) findViewById(R.id.surfaceView);
+        Intent intent = getIntent();
+        final String question = intent.getExtras().getString("finalquestion");
 
         Button button = (Button) findViewById(R.id.button);
         Button button2 = (Button) findViewById(R.id.button2);
         holder = surfaceView.getHolder();
         holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        finalquestion = (TextView) findViewById(R.id.finalquestion);
+        finalquestion.setText(question);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +85,7 @@ public class RecordActivity extends AppCompatActivity {
                     camera=null;
 
                     Intent intent = new Intent(RecordActivity.this, BoardWriteActivity.class);
+                    intent.putExtra("question",question);
                     startActivity(intent);
                 }
             }

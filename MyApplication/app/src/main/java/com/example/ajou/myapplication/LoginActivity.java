@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
     String param_nickname;
     String param_notification;
     String param_major;
+    String param_usrIdx;
 
     public static String userId;
 
@@ -262,6 +263,7 @@ public class LoginActivity extends AppCompatActivity {
                         param_nickname = item.getString("nickname");
                         param_notification = item.getString("notification");
                         param_major = item.getString("major");
+                        param_usrIdx = item.getString("usrIdx");
                     }
 
                 } catch (JSONException e) {
@@ -300,6 +302,8 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("param_nickname",param_nickname);
                     intent.putExtra("param_notification",param_notification);
                     intent.putExtra("param_major",param_major);
+                    intent.putExtra("param_usrIdx",param_usrIdx);
+
                     startActivity(intent);
 
                 } else { // 로그인 실패 , 다시 확인하라고 알림창 띄우기

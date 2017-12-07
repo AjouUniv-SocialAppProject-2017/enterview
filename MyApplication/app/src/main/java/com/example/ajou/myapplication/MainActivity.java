@@ -19,19 +19,23 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     ViewPager pager;
     ImageButton category, bulletin, myPage; //탭 버튼
+    static int flag = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // user information 가져오기
-        Intent intent = getIntent();
-        final String param_email = intent.getExtras().getString("param_email");
-        final String param_nickname = intent.getExtras().getString("param_nickname");
-        final String param_notification = intent.getExtras().getString("param_notification");
-        final String param_major = intent.getExtras().getString("param_major");
-       // Toast.makeText(getApplicationContext(),param_email+"/"+param_nickname+"/"+param_major+"/"+param_notification,Toast.LENGTH_LONG).show();
-
+        if(flag == 0) {
+            // user information 가져오기
+            Intent intent = getIntent();
+            final String param_email = intent.getExtras().getString("param_email");
+            final String param_nickname = intent.getExtras().getString("param_nickname");
+            final String param_notification = intent.getExtras().getString("param_notification");
+            final String param_major = intent.getExtras().getString("param_major");
+            final String param_usrIdx = intent.getExtras().getString("param_usrIdx");
+            Toast.makeText(getApplicationContext(), param_email + "/" + param_nickname + "/" + param_major + "/" + param_notification + "/" + param_usrIdx, Toast.LENGTH_LONG).show();
+            flag ++;
+        }
         pager = (ViewPager)findViewById(R.id.pager);
         category= (ImageButton)findViewById(R.id.btn_category);
         bulletin = (ImageButton)findViewById(R.id.btn_bulletin);
