@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,6 +24,8 @@ import android.widget.VideoView;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -40,6 +43,8 @@ public class BoardWriteActivity extends AppCompatActivity {
     EditText desc;
     VideoView videoView;
     private LoginActivity log;
+    final String path = "/sdcard/recorded_video.mp4";
+
 
     String s_desc,s_sub,s_user;
 
@@ -59,7 +64,7 @@ public class BoardWriteActivity extends AppCompatActivity {
         sub.setText(question);
         desc = (EditText) findViewById(R.id.desc);
         videoView = (VideoView) findViewById(R.id.videoView);
-        videoView.setVideoPath("/sdcard/recorded_video.mp4");
+        videoView.setVideoPath(path);
         final MediaController mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
 
@@ -75,6 +80,7 @@ public class BoardWriteActivity extends AppCompatActivity {
         //s_user = log.userId;
         s_user="1";
 
+
         InsertData task = new InsertData();
         task.execute(s_sub,s_desc,s_user);
 
@@ -82,6 +88,12 @@ public class BoardWriteActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"글이 등록되었습니다",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(BoardWriteActivity.this, MainActivity.class);
         startActivity(intent);
+    }
+
+    private String getMimeType(String path) {
+        String extension = MimeTypeMap.getFileExtensionFromUrl(path);
+
+        return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
     }
 
 

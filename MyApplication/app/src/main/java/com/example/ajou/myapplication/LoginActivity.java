@@ -173,6 +173,13 @@ public class LoginActivity extends AppCompatActivity {
                             //resultText.setText("read/write storage permission denied");
                         }
                     }
+                    if (permission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                        if(grantResult == PackageManager.PERMISSION_GRANTED) {
+                            //resultText.setText("read/write storage permission authorized");
+                        } else {
+                            //resultText.setText("read/write storage permission denied");
+                        }
+                    }
                 }
                 break;
 
@@ -272,8 +279,9 @@ public class LoginActivity extends AppCompatActivity {
                 /* 서버에서 응답 */
                 Log.e("RECV DATA", data);
                 Log.e("RESULT", data);
-
-                if (!(data.equals("0"))||Integer.parseInt(data)!=0) {
+                String result = data.substring(0,1);
+                Log.e("RESULT", result);
+                if (!(result.equals("0"))||Integer.parseInt(result)!=0) {
 
                     Log.e("RESULT", "성공적으로 처리되었습니다!"+data+"data");
                     //Toast.makeText(getApplicationContext(), "완료", Toast.LENGTH_SHORT).show();
