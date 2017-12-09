@@ -195,18 +195,21 @@ public class BulletinBoardFragment extends Fragment {
                 JSONObject item = jsonArray.getJSONObject(i);
 
                 String brdIdx = item.getString("brdIdx");
-                listBoardId[i] = brdIdx;
-                Log.d("여기 리스트 아이디",""+listBoardId[i]);
+                listId[i] = brdIdx;
+
                 String brdContents = item.getString("brdContents");
                 String brdSubject = item.getString("brdSubject");
                 String brdDate = item.getString("brdDate");
                 String brdNickname = item.getString("brdNickname");
-
+                String brdUrl = item.getString("brdUrl");
+                Log.d("여기 리스트 아이디",""+listId[i]);
+                Log.d("여기 Url",""+brdUrl);
                 //Log.d("이미지소스",brdPicture);
 
                 //  proud.setImage(prdPicture);
 
-                board_items.add(new Board_item(R.drawable.board_icon, brdNickname, brdSubject, brdDate, brdContents, "댓글"));
+                board_items.add(new Board_item(R.drawable.board_icon, brdNickname, brdSubject, brdDate, brdContents,
+                        "댓글",brdUrl));
             }
 
             boardView.setLayoutManager(layoutManager_board);

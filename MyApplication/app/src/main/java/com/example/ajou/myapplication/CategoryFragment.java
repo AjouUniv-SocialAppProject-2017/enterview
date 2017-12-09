@@ -30,6 +30,7 @@ public class CategoryFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
     @Nullable
     @Override
@@ -37,13 +38,17 @@ public class CategoryFragment extends Fragment {
 
                              @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.question_category, container, false);
+        Bundle bundle = getArguments();
+        final String param_usrIdx = bundle.getString("param_usrIdx"); // 전달한 key 값
 
+        출처: http://jizard.tistory.com/66 [JIZARD]
         category1 = (Button) view.findViewById(R.id.category1);
         category1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
                 intent.putExtra("category_num",1);
+                intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
         });
@@ -53,6 +58,7 @@ public class CategoryFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
                 intent.putExtra("category_num",2);
+                intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
         });
@@ -62,6 +68,7 @@ public class CategoryFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
                 intent.putExtra("category_num",3);
+                intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
         });
@@ -71,6 +78,7 @@ public class CategoryFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
                 intent.putExtra("category_num",4);
+                intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
         });
@@ -80,6 +88,7 @@ public class CategoryFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
                 intent.putExtra("category_num",5);
+                intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
         });
@@ -89,6 +98,7 @@ public class CategoryFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
                 intent.putExtra("category_num",6);
+                intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
         });
@@ -98,6 +108,7 @@ public class CategoryFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
                 intent.putExtra("category_num",7);
+                intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
         });
@@ -107,6 +118,7 @@ public class CategoryFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
                 intent.putExtra("category_num",8);
+                intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
         });

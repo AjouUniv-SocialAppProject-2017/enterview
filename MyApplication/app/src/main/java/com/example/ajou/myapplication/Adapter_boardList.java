@@ -2,6 +2,8 @@ package com.example.ajou.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -14,10 +16,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.MediaController;
 import android.widget.PopupWindow;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,6 +48,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
     private ImageButton btnClosePopup;
     RatingBar rb, rb1, rb2, rb3, rb4, rb5;
     Button save_btn;
+    VideoView videoView;
 
     BulletinBoardFragment fr = new BulletinBoardFragment();
 
@@ -71,10 +76,18 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
 
         final Board_item item=items.get(position);
 
+
         holder.contents.setText(item.getDesc());
         holder.name.setText(item.getName());
         holder.title.setText(item.getTitle());
         holder.comment.setText(item.getComment());
+        Uri uri = Uri.parse(item.getUrl());
+        holder.videoView.setVideoURI(uri);
+        final MediaController mediaController = new MediaController(context);
+        holder.videoView.setMediaController(mediaController);
+
+        Log.d("name Url 확인",""+item.getName()+"/"+item.getUrl());
+
 
         final int posi = holder.getAdapterPosition();
 
@@ -93,6 +106,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
             }
         });
 */
+
 
         // 댓글 클릭 시 댓글창 생성
         holder.comment.setOnClickListener(new View.OnClickListener() {
@@ -229,6 +243,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
         TextView title;
         TextView comment;
         TextView rating;
+        VideoView videoView;
 
         public ViewHolder(View itemView) {
 
@@ -238,6 +253,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
             title = (TextView)itemView.findViewById(R.id.board_title);
             comment = (TextView)itemView.findViewById(R.id.board_comment);
             rating = (TextView)itemView.findViewById(R.id.rating_btn);
+            videoView = (VideoView) itemView.findViewById(R.id.videoView);
         }
     }
 
