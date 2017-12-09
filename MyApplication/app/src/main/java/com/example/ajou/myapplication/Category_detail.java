@@ -39,6 +39,7 @@ public class Category_detail extends AppCompatActivity {
         setContentView(R.layout.category_detail);
         Intent intent = getIntent();
         final int category_num = intent.getExtras().getInt("category_num");
+        final String param_usrIdx = intent.getExtras().getString("param_usrIdx");
         selectedQuestion = (TextView) findViewById(R.id.selected_question);
 
         record_start = (Button) findViewById(R.id.record_start);
@@ -49,6 +50,7 @@ public class Category_detail extends AppCompatActivity {
                 //Intent intent = new Intent(getApplicationContext(), BoardWriteActivity.class);
                 Intent intent  = new Intent(getApplicationContext(),RecordActivity.class);
                 intent.putExtra("finalquestion",finalquestion);
+                intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
 
             }

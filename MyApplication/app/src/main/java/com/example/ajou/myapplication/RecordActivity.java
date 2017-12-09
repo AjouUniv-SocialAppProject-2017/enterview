@@ -26,7 +26,7 @@ public class RecordActivity extends AppCompatActivity {
     SurfaceHolder holder;
     MediaRecorder recorder = null;
     Camera camera;
-    String path = "/sdcard/recorded_video.mp4";
+    String path = "/sdcard/";
     TextView finalquestion;
 
     @Override
@@ -36,7 +36,9 @@ public class RecordActivity extends AppCompatActivity {
         surfaceView  = (SurfaceView) findViewById(R.id.surfaceView);
         Intent intent = getIntent();
         final String question = intent.getExtras().getString("finalquestion");
+        final String param_usrIdx = intent.getExtras().getString("param_usrIdx");
 
+        path +=param_usrIdx+".mp4";
         Button button = (Button) findViewById(R.id.button);
         Button button2 = (Button) findViewById(R.id.button2);
         holder = surfaceView.getHolder();
@@ -86,6 +88,8 @@ public class RecordActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(RecordActivity.this, BoardWriteActivity.class);
                     intent.putExtra("question",question);
+                    intent.putExtra("param_usrIdx",param_usrIdx);
+                    intent.putExtra("path",path);
                     startActivity(intent);
                 }
             }

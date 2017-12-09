@@ -20,7 +20,11 @@ public class MainActivity extends AppCompatActivity {
     ViewPager pager;
     ImageButton category, bulletin, myPage; //탭 버튼
     static int flag = 0;
-
+    String param_email;
+    String param_nickname;
+    String param_notification;
+    String param_major;
+    String param_usrIdx;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
         if(flag == 0) {
             // user information 가져오기
             Intent intent = getIntent();
-            final String param_email = intent.getExtras().getString("param_email");
-            final String param_nickname = intent.getExtras().getString("param_nickname");
-            final String param_notification = intent.getExtras().getString("param_notification");
-            final String param_major = intent.getExtras().getString("param_major");
-            final String param_usrIdx = intent.getExtras().getString("param_usrIdx");
+            param_email = intent.getExtras().getString("param_email");
+            param_nickname = intent.getExtras().getString("param_nickname");
+            param_notification = intent.getExtras().getString("param_notification");
+            param_major = intent.getExtras().getString("param_major");
+            param_usrIdx = intent.getExtras().getString("param_usrIdx");
             Toast.makeText(getApplicationContext(), param_email + "/" + param_nickname + "/" + param_major + "/" + param_notification + "/" + param_usrIdx, Toast.LENGTH_LONG).show();
             flag ++;
         }
@@ -73,7 +77,11 @@ public class MainActivity extends AppCompatActivity {
             switch(position)
             {
                 case 0:
-                    return new CategoryFragment();
+                    Fragment fragment = new CategoryFragment();
+                    Bundle bundle = new Bundle(1); // 파라미터는 전달할 데이터 개수
+                    bundle.putString("param_usrIdx", param_usrIdx); // key , value
+                    fragment.setArguments(bundle);
+                    return fragment;
                 case 1:
                     return new BulletinBoardFragment();
                 case 2:
@@ -90,4 +98,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        flag = 0 ;
+    }
 }

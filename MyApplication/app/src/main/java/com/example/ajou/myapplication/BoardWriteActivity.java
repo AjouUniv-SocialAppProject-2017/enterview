@@ -10,6 +10,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -31,23 +34,25 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by thfad_000 on 2017-05-08.
  */
 public class BoardWriteActivity extends AppCompatActivity {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     TextView sub;
     EditText desc;
     VideoView videoView;
-    private LoginActivity log;
-    final String path = "/sdcard/recorded_video.mp4";
 
+    LoginActivity log;
 
     String s_desc,s_sub,s_user;
-
+    String param_usrIdx ;
+    String path;
+    String videoUrl= "http://52.41.114.24/enterview/VideoUpload/uploads/";
+    String filename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,10 @@ public class BoardWriteActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String question = intent.getExtras().getString("question");
+        param_usrIdx = intent.getExtras().getString("param_usrIdx");
+        path = intent.getExtras().getString("path");
+        filename = path.substring(8,path.length());
+        videoUrl += filename;
 
         sub = (TextView) findViewById(R.id.sub);
         sub.setText(question);
@@ -78,24 +87,18 @@ public class BoardWriteActivity extends AppCompatActivity {
 
         //수정필요
         //s_user = log.userId;
-        s_user="1";
+        s_user=param_usrIdx;
 
 
         InsertData task = new InsertData();
-        task.execute(s_sub,s_desc,s_user);
+        task.execute(s_sub,s_desc,s_user,videoUrl);
 
         Log.d("이걸봐", "" + s_desc+" "+s_user);
         Toast.makeText(getApplicationContext(),"글이 등록되었습니다",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(BoardWriteActivity.this, MainActivity.class);
         startActivity(intent);
+        uploadVideo();
     }
-
-    private String getMimeType(String path) {
-        String extension = MimeTypeMap.getFileExtensionFromUrl(path);
-
-        return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
-    }
-
 
     // 뒤로가기 버튼
     public void write_cancel(View v){
@@ -129,9 +132,11 @@ public class BoardWriteActivity extends AppCompatActivity {
             String brdSubject = (String) params[0];
             String brdContents = (String) params[1];
             String brdUserId = (String) params[2];
+            String brdUrl = (String) params[3];
 
             String serverURL = "http://52.41.114.24/enterview/boardWrite.php";
-            String postParameters = "brdSubject=" + brdSubject + "&brdContents=" + brdContents + "&brdUserId=" + brdUserId;
+            String postParameters = "brdSubject=" + brdSubject + "&brdContents=" + brdContents +
+                    "&brdUserId=" + brdUserId + "&brdUrl=" + brdUrl;
 
             Log.d("이거봐", "" + postParameters);
 
@@ -187,5 +192,36 @@ public class BoardWriteActivity extends AppCompatActivity {
 
         }
     }
+
+    private void uploadVideo() {
+        class UploadVideo extends AsyncTask<Void, Void, String> {
+
+            ProgressDialog uploading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                uploading = ProgressDialog.show(BoardWriteActivity.this, "Uploading File", "Please wait...", false, false);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                uploading.dismiss();
+
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                Upload u = new Upload();
+
+                String msg = u.uploadVideo(path);
+                return msg;
+            }
+        }
+        UploadVideo uv = new UploadVideo();
+        uv.execute();
+    }
+
 
 }
