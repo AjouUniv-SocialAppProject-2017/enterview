@@ -42,7 +42,6 @@ public class BulletinBoardFragment extends Fragment {
     private RecyclerView.Adapter Adapter_board;
     Board_item board_item;
     private RecyclerView.LayoutManager layoutManager_board;
-    public static String[] listBoardId = new String[100];
     private ImageButton searchBtn;
     String cookies;
     static String mJsonString;

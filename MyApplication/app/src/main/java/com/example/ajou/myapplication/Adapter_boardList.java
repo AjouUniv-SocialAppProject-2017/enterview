@@ -130,7 +130,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
 
                     layoutManager_board_review = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
 
-                    final String itemId= fr.listBoardId[posi];
+                    final String itemId= fr.listId[posi];
                     Log.d("댓글이 달릴 게시글 아이디",""+itemId);
                     GetData getTask = new GetData();
                     getTask.execute(itemId);
