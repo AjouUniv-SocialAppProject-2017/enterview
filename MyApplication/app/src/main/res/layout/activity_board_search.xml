@@ -17,6 +17,7 @@
             android:layout_width="257dp"
             android:layout_height="wrap_content"
             android:layout_margin="15dip"
+            android:textColor="@color/colorAccent"
             android:textColorHint="@color/colorAccent"
             android:hint="검색어를 입력하세요" />
 
@@ -30,6 +31,7 @@
         android:baselineAlignBottom="true"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
+        android:onClick="srchBtnClick"
         app:srcCompat="@drawable/musica_searcher" />
     </LinearLayout>
 
@@ -43,32 +45,57 @@
         android:layout_marginLeft="15dp"
         android:layout_marginStart="15dp"
         android:text="같은 직무만 보기"
+        android:onClick="srchBtnClick"
         android:textColor="@color/colorAccent" />
 
-    <TextView
-        android:id="@+id/freSearchQuest"
+    <LinearLayout
+        android:id="@+id/frqLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/checkBox"
-        android:layout_marginTop="48dp"
-        android:background="@color/colorAccent"
-        android:textColor="@color/colorPrimary"
-        android:layout_margin="10dip"
-        android:padding="5dip"
-        android:text="자주 검색하는 질문"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+        android:orientation="vertical"
+        android:layout_below="@+id/checkBox">
+        <TextView
+            android:id="@+id/freSearchQuest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/checkBox"
+            android:layout_marginTop="48dp"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
+            android:layout_margin="10dip"
+            android:padding="5dip"
+            android:text="자주 검색하는 질문"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/fsq"
-        android:layout_below="@+id/freSearchQuest"
-        android:background="@color/colorAccent"
-        android:layout_margin="10dip"
-        android:padding="5dip"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fsq"
+            android:layout_below="@+id/freSearchQuest"
+            android:background="@color/colorAccent"
+            android:layout_margin="10dip"
+            android:padding="5dip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/searchBoard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/checkBox">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/frq_board_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>

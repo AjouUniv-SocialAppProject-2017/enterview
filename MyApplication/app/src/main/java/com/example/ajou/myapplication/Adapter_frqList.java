@@ -59,16 +59,6 @@ public class Adapter_frqList extends RecyclerView.Adapter<Adapter_frqList.ViewHo
 
         final BoardSearch_frequestion_item item=items.get(position);
         holder.desc.setText(item.getDesc());
-
-        //질문 클릭리스너 안되네.. 흠
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, BoardDetailActivity.class);
-                context.startActivity(intent);
-            }
-        });
-
     }
 
     @Override

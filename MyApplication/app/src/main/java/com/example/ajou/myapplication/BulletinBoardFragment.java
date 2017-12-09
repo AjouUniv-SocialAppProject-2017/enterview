@@ -28,6 +28,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by ajou on 2017-11-08.
@@ -41,11 +44,12 @@ public class BulletinBoardFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager_board;
     public static String[] listBoardId = new String[100];
     private ImageButton searchBtn;
-
-    String mJsonString;
-
+    String cookies;
+    static String mJsonString;
+    public static String[] listId = new String[100];
     VideoView videoView;
     String path = "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4";
+
 /*
     public BulletinBoardFragment()
     {
@@ -138,7 +142,15 @@ public class BulletinBoardFragment extends Fragment {
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
                 httpURLConnection.connect();
-
+                /*
+                Map m = httpURLConnection.getHeaderFields();
+                if(m.containsKey("Set-Cookie")){
+                    Collection c = (Collection)m.get("Set-Cookie");
+                    for(Iterator i = c.iterator(); i.hasNext(); ) {
+                        cookies += (String)i.next();
+                    }
+                }
+                */
                 int responseStatusCode = httpURLConnection.getResponseCode();
 
                 InputStream inputStream;
@@ -203,6 +215,7 @@ public class BulletinBoardFragment extends Fragment {
             boardView.setAdapter(Adapter_board);
 
         } catch (JSONException e) {
+
         }
 
     }
