@@ -116,10 +116,10 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
 
                     layoutManager_board_review = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
 
-                    String itemId= fr.listBoardId[posi];
-                    Log.d("댓글 아이디",""+itemId);
-                    GetData task = new GetData();
-                    task.execute(itemId);
+                    final String itemId= fr.listBoardId[posi];
+                    Log.d("댓글이 달릴 게시글 아이디",""+itemId);
+                    GetData getTask = new GetData();
+                    getTask.execute(itemId);
 
                     btnUpload.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -130,12 +130,14 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
                             //수정필요 유저아이디
                             //String userId = log.userId;
                             String userId = "1";
-                            String itemId = fr.listBoardId[posi];
 
-                            InsertData task = new InsertData();
-                            task.execute(itemId,userId,desc);
+                            InsertData insertTask = new InsertData();
+                            insertTask.execute(itemId,userId,desc);
 
                             commentDesc.setText(null);
+                            //수정필요 댓글 update 어케 하냐..
+                            GetData getTask = new GetData();
+                            getTask.execute(itemId);
 
                         }
                     });
@@ -154,7 +156,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
             }
         });
 
-        // 별점 클릭 시 댓글창 생성
+        // 별점 클릭 시 팝업창 생성
         holder.rating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,8 +185,6 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
                             pw.dismiss();
                         }
                     });
-
-
 
                     rb =(RatingBar)popupView.findViewById(R.id.ratingBar);
                     rb1 =(RatingBar)popupView.findViewById(R.id.ratingBar1);
@@ -270,7 +270,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
             String prdcmUserId = (String) params[1];
             String prdcmContents = (String) params[2];
 
-            String serverURL = "http://52.41.114.24/enterview/boardReview.php";
+            String serverURL = "http://52.41.114.24/enterview/insertBrdReview.php";
             String postParameters = "brdliId=" + prdliId + "&brdcmUserId=" + prdcmUserId
                     + "&brdcmContents=" + prdcmContents;
 
@@ -349,10 +349,10 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
         protected String doInBackground(String... params) {
 
 
-            String prdliId = (String) params[0];
+            String brdliId = (String) params[0];
 
-            String serverURL = "http://52.41.114.24/enterview/readbrdReview.php";
-            String postParameters = "brdliId=" + prdliId ;
+            String serverURL = "http://52.41.114.24/enterview/readBrdReview.php";
+            String postParameters = "brdliId=" + brdliId ;
 
             try {
 
@@ -414,8 +414,9 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
 
                 JSONObject item = jsonArray.getJSONObject(i);
 
-                String desc = item.getString("prdReviewDesc");
+                String desc = item.getString("reviewDesc");
                 String nick = item.getString("userNic");
+                Log.d("댓글아나와라",nick+":"+desc);
 
                 //  proud.setImage(prdPicture);
 
@@ -426,7 +427,10 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
             Adapter_board_review = new Adapter_board_review(context, boardReview_items, 1);
             boardReview.setAdapter(Adapter_board_review);
 
+            Log.d("GetData", "Success");
+
         } catch (JSONException e) {
+            Log.d("GetData", "Error");
         }
 
     }

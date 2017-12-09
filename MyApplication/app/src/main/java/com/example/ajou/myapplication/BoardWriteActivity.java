@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -54,7 +56,10 @@ public class BoardWriteActivity extends AppCompatActivity {
         sub = (TextView) findViewById(R.id.sub);
         desc = (EditText) findViewById(R.id.desc);
         videoView = (VideoView) findViewById(R.id.videoView);
-        videoView.setVideoPath("/sdcard/recorded_video.mp4");
+
+        //path 수정필요!
+        String path = "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4";
+        videoView.setVideoURI(Uri.parse(path));
         final MediaController mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
 

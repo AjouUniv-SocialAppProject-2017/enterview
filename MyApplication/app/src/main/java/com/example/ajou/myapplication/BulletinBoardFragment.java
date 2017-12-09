@@ -43,7 +43,9 @@ public class BulletinBoardFragment extends Fragment {
     private ImageButton searchBtn;
 
     String mJsonString;
-    public static String[] listId = new String[100];
+
+    VideoView videoView;
+    String path = "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4";
 /*
     public BulletinBoardFragment()
     {
@@ -71,16 +73,6 @@ public class BulletinBoardFragment extends Fragment {
 
         layoutManager_board = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
 
-        //게시글 ArrayList
-/*        ArrayList<Board_item> board_items = new ArrayList<>();
-
-        for (int i = 0; i < 10; i++) {
-            board_items.add(new Board_item(0, "닉네임", "제목", "날짜", "desc", "댓글"));
-        }
-
-        boardView.setLayoutManager(layoutManager_board);
-        Adapter_board = new Adapter_boardList(getActivity(), board_items, 1);
-        boardView.setAdapter(Adapter_board);*/
 
         //검색버튼 클릭 시, 검색 액티비티로 이동
         searchBtn = (ImageButton)view.findViewById(R.id.searchBtn);
@@ -97,13 +89,21 @@ public class BulletinBoardFragment extends Fragment {
         task.execute("http://52.41.114.24/enterview/boardList.php");
 
         //영상
-        //VideoView videoView = (VideoView)view.findViewById(R.id.videoView);
-        //
-        //String SAMPLE_VIDEO_URL = "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4";
-        //videoView.setVideoURI(Uri.parse(SAMPLE_VIDEO_URL));
-        //
-        // final MediaController mediaController = new MediaController(this.getContext());
-        //videoView.setMediaController(mediaController);
+        VideoView videoView = (VideoView)view.findViewById(R.id.videoView);
+
+        try{
+            Uri urIpath = Uri.parse(path);
+
+            final MediaController mediaController = new MediaController(getActivity());
+            videoView.setMediaController(mediaController);
+            videoView.setVideoURI(urIpath);
+
+        }catch(Exception e){
+            //계속 path null pointer exception 남!! ㅜㅜ
+            e.printStackTrace();
+            Log.e("error","video error"+e);
+        }
+
 
         return view;
     }
@@ -183,8 +183,8 @@ public class BulletinBoardFragment extends Fragment {
                 JSONObject item = jsonArray.getJSONObject(i);
 
                 String brdIdx = item.getString("brdIdx");
-                listId[i] = brdIdx;
-                Log.d("여기 리스트 아이디",""+listId[i]);
+                listBoardId[i] = brdIdx;
+                Log.d("여기 리스트 아이디",""+listBoardId[i]);
                 String brdContents = item.getString("brdContents");
                 String brdSubject = item.getString("brdSubject");
                 String brdDate = item.getString("brdDate");

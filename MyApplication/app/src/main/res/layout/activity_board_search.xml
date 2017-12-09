@@ -61,21 +61,14 @@
         android:textAlignment="center"
         android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/fsq1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fsq"
         android:layout_below="@+id/freSearchQuest"
-        android:layout_marginTop="48dp"
         android:background="@color/colorAccent"
-        android:textColor="@color/colorPrimary"
         android:layout_margin="10dip"
         android:padding="5dip"
-        android:text="1. 자기소개\n\n2. 지원동기\n\n3. 입사 후 포부"
-        android:textAlignment="center"
-        android:textSize="18sp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 </RelativeLayout>
