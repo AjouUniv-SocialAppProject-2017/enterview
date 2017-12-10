@@ -34,6 +34,8 @@ public class BoardSearchActivity extends AppCompatActivity {
     BoardSearch_frequestion_item frq_item;
     private RecyclerView.LayoutManager layoutManager_board;
 
+    String param_usrIdx;
+
     String mJsonString;
 
     public static String[] listBoardId = new String[100];
@@ -50,6 +52,9 @@ public class BoardSearchActivity extends AppCompatActivity {
         frqView.setHasFixedSize(true);
 
         layoutManager_board = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+
+        Intent intent = getIntent();
+        param_usrIdx = intent.getExtras().getString("param_usrIdx");
 
         //데이터 받아오기
         GetData task = new GetData();
@@ -195,8 +200,8 @@ public class BoardSearchActivity extends AppCompatActivity {
         int sameJobIsChecked = (checkBox.isChecked()) ? 1 : 0;
 
         GetSearchData task = new GetSearchData();
-        task.execute("http://52.41.114.24/enterview/boardList.php?searchKey="+searchKey_txt+"&sameJob="+sameJobIsChecked);
-
+        task.execute("http://52.41.114.24/enterview/boardList.php?searchKey="+searchKey_txt+"&sameJob="+sameJobIsChecked+"&usrIdx"+param_usrIdx);
+        Log.d("과연",param_usrIdx);
         layoutManager_board = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         Log.d("srchBtnClick","srchBtnClick");
     }
@@ -287,10 +292,11 @@ public class BoardSearchActivity extends AppCompatActivity {
                 String brdNickname = item.getString("brdNickname");
                 String brdUrl = item.getString("brdUrl");
                 String brdRating = item.getString("brdRating");
+                if(brdRating.equals("")||brdRating.equals("null")){
+                    brdRating="별점주기";
+                }
 
-                //Log.d("이미지소스",brdPicture);
-
-                //  proud.setImage(prdPicture);
+                Log.d("유저아이디",item.getString("usrIdx"));
 
                 board_items.add(new Board_item(brdRating, brdNickname, brdSubject, brdDate, brdContents,
                         "댓글",brdUrl));
@@ -311,7 +317,7 @@ public class BoardSearchActivity extends AppCompatActivity {
             }
 
             boardView.setLayoutManager(layoutManager_board);
-            Adapter_board = new Adapter_boardList(this, board_items, 1);
+            Adapter_board = new Adapter_boardList(this, board_items, 1,param_usrIdx);
             // Adapter_proud.notifyDataSetChanged();
             boardView.setAdapter(Adapter_board);
 

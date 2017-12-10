@@ -16,7 +16,10 @@
             android:id="@+id/searchKey"
             android:layout_width="257dp"
             android:layout_height="wrap_content"
-            android:layout_margin="15dip"
+            android:layout_marginTop="15dip"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="15dip"
+            android:layout_marginBottom="0dip"
             android:textColor="@color/colorAccent"
             android:textColorHint="@color/colorAccent"
             android:hint="검색어를 입력하세요" />

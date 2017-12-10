@@ -90,9 +90,6 @@ public class BoardWriteActivity extends AppCompatActivity {
 
         s_sub = sub.getText().toString();
         s_desc = desc.getText().toString();
-
-        //수정필요
-        //s_user = log.userId;
         s_user=param_usrIdx;
 
 

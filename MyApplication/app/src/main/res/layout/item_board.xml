@@ -80,6 +80,10 @@
             android:layout_alignParentLeft="true"
             android:clickable="true"
             android:text="★"
+            android:paddingLeft="5dip"
+            android:paddingTop="5dip"
+            android:paddingBottom="5dip"
+            android:paddingRight="0dip"
             android:textColor="@color/colorPrimary"
             android:textSize="12dip" />
 
@@ -92,6 +96,10 @@
             android:layout_toRightOf="@+id/star"
             android:clickable="true"
             android:text="별점주기"
+            android:paddingRight="5dip"
+            android:paddingLeft="0dip"
+            android:paddingTop="5dip"
+            android:paddingBottom="5dip"
             android:textColor="@color/colorPrimary"
             android:textSize="12dip" />
 
@@ -103,6 +111,7 @@
             android:layout_marginRight="10dip"
             android:clickable="true"
             android:text="댓글 0개"
+            android:padding="5dip"
             android:textColor="@color/colorPrimary"
             android:textSize="12dip" />
 

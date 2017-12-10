@@ -49,6 +49,8 @@ public class BulletinBoardFragment extends Fragment {
     VideoView videoView;
     String path = "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4";
 
+    String param_usrIdx;
+
 /*
     public BulletinBoardFragment()
     {
@@ -76,6 +78,10 @@ public class BulletinBoardFragment extends Fragment {
 
         layoutManager_board = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
 
+        //로그인 usrIdx
+        Bundle bundle = getArguments();
+        param_usrIdx = bundle.getString("param_usrIdx"); // 전달한 key 값
+
 
         //검색버튼 클릭 시, 검색 액티비티로 이동
         searchBtn = (ImageButton)view.findViewById(R.id.searchBtn);
@@ -83,13 +89,14 @@ public class BulletinBoardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), BoardSearchActivity.class);
+                intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
         });
 
         //데이터 받아오기
         GetData task = new GetData();
-        task.execute("http://52.41.114.24/enterview/boardList.php");
+        task.execute("http://52.41.114.24/enterview/boardList.php?usrIdx="+param_usrIdx);
 
         //영상
         VideoView videoView = (VideoView)view.findViewById(R.id.videoView);
@@ -216,7 +223,7 @@ public class BulletinBoardFragment extends Fragment {
             }
 
             boardView.setLayoutManager(layoutManager_board);
-            Adapter_board = new Adapter_boardList(getActivity(), board_items, 1);
+            Adapter_board = new Adapter_boardList(getActivity(), board_items, 1,param_usrIdx);
             // Adapter_proud.notifyDataSetChanged();
             boardView.setAdapter(Adapter_board);
 

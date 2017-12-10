@@ -41,7 +41,6 @@ public class CategoryFragment extends Fragment {
         Bundle bundle = getArguments();
         final String param_usrIdx = bundle.getString("param_usrIdx"); // 전달한 key 값
 
-        출처: http://jizard.tistory.com/66 [JIZARD]
         category1 = (Button) view.findViewById(R.id.category1);
         category1.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -58,10 +58,13 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
 
     String mJsonString;
 
-    public Adapter_boardList(Context context, List<Board_item> items, int item_layout) {
+    String usrIdx;
+
+    public Adapter_boardList(Context context, List<Board_item> items, int item_layout, String usrIdx) {
         this.context=context;
         this.items=items;
         this.item_layout=item_layout;
+        this.usrIdx=usrIdx;
     }
 
     @Override
@@ -93,18 +96,6 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
         final int width = dm.widthPixels;
         final int height = dm.heightPixels;
-/*
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String itemId= fr.listBoardId[posi];
-                Intent intent = new Intent(context, BoardDetailActivity.class);
-                intent.putExtra("itemId",itemId);
-                context.startActivity(intent);
-            }
-        });
-*/
 
 
         // 댓글 클릭 시 댓글창 생성
@@ -138,11 +129,8 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
                         @Override
                         public void onClick(View v) {
 
-                            //$prdliId $prdcmUserId $prdcmContents
                             String desc = commentDesc.getText().toString();
-                            //수정필요 유저아이디
-                            //String userId = log.userId;
-                            String userId = "1";
+                            String userId = usrIdx;
 
                             InsertData insertTask = new InsertData();
                             insertTask.execute(itemId,userId,desc);
@@ -203,8 +191,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
 
                     //별점 데이터 read
                     GetRatingData getData = new GetRatingData();
-                    //수정필요 유저아이디
-                    getData.execute(itemId,"1");
+                    getData.execute(itemId,usrIdx);
 
                     RatingBar.OnRatingBarChangeListener ratingBarChangeListener = new RatingBar.OnRatingBarChangeListener() {
                         @Override
@@ -227,14 +214,11 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
                         @Override
                         public void onClick(View v) {
                             InsertRatingData insertTask = new InsertRatingData();
-                            //수정필요 유저아이디
-                            insertTask.execute(itemId,"1",""+rb1.getRating(),""+rb2.getRating(),""+rb3.getRating(),
+                            insertTask.execute(itemId,usrIdx,""+rb1.getRating(),""+rb2.getRating(),""+rb3.getRating(),
                                     ""+rb4.getRating(),""+rb5.getRating(),""+rb.getRating());
                             pw.dismiss();
                         }
                     });
-
-
 
                 }catch (Exception e) {
                     e.printStackTrace();

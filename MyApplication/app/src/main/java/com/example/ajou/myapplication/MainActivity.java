@@ -77,13 +77,17 @@ public class MainActivity extends AppCompatActivity {
             switch(position)
             {
                 case 0:
-                    Fragment fragment = new CategoryFragment();
-                    Bundle bundle = new Bundle(1); // 파라미터는 전달할 데이터 개수
-                    bundle.putString("param_usrIdx", param_usrIdx); // key , value
-                    fragment.setArguments(bundle);
-                    return fragment;
+                    Fragment categoryFragment = new CategoryFragment();
+                    Bundle bundle0 = new Bundle(1); // 파라미터는 전달할 데이터 개수
+                    bundle0.putString("param_usrIdx", param_usrIdx); // key , value
+                    categoryFragment.setArguments(bundle0);
+                    return categoryFragment;
                 case 1:
-                    return new BulletinBoardFragment();
+                    Fragment boardFragment = new BulletinBoardFragment();
+                    Bundle bundle1 = new Bundle(1); // 파라미터는 전달할 데이터 개수
+                    bundle1.putString("param_usrIdx", param_usrIdx); // key , value
+                    boardFragment.setArguments(bundle1);
+                    return boardFragment;
                 case 2:
                     return new MyPageFragment();
                 default:
