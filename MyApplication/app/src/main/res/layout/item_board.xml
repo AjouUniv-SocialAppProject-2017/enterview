@@ -73,15 +73,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin = "5dip">
+        <TextView
+            android:id="@+id/star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:clickable="true"
+            android:text="★"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12dip" />
 
         <TextView
             android:id="@+id/rating_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginRight="10dip"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/star"
+            android:layout_toRightOf="@+id/star"
             android:clickable="true"
-            android:text="★ 별점주기"
+            android:text="별점주기"
             android:textColor="@color/colorPrimary"
             android:textSize="12dip" />
 

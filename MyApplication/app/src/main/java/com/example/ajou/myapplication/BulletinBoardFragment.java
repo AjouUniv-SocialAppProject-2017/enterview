@@ -201,13 +201,17 @@ public class BulletinBoardFragment extends Fragment {
                 String brdDate = item.getString("brdDate");
                 String brdNickname = item.getString("brdNickname");
                 String brdUrl = item.getString("brdUrl");
+                String brdRating = item.getString("brdRating");
+                if(brdRating.equals("")||brdRating.equals("null")){
+                    brdRating="별점주기";
+                }
                 Log.d("여기 리스트 아이디",""+listId[i]);
                 Log.d("여기 Url",""+brdUrl);
                 //Log.d("이미지소스",brdPicture);
 
                 //  proud.setImage(prdPicture);
 
-                board_items.add(new Board_item(R.drawable.board_icon, brdNickname, brdSubject, brdDate, brdContents,
+                board_items.add(new Board_item(brdRating, brdNickname, brdSubject, brdDate, brdContents,
                         "댓글",brdUrl));
             }
 

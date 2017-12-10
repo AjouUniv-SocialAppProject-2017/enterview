@@ -6,7 +6,7 @@ package com.example.ajou.myapplication;
  */
 public class Board_item {
 
-    int image;
+    String rating;
     String name ;
     String title;
     String date;
@@ -14,9 +14,8 @@ public class Board_item {
     String comment;
     String url;
 
-    public int getImage(){
-        return this.image;
-    }
+
+    public String getRating(){ return this.rating; }
     public String getName(){ return this.name; }
     public String getTitle(){ return this.title; }
     public String getDate(){
@@ -30,9 +29,9 @@ public class Board_item {
 
     public Board_item(){}
 
-    public Board_item(int image, String name, String title, String date, String desc, String comment,String url){
+    public Board_item(String rating, String name, String title, String date, String desc, String comment,String url){
 
-        this.image=image;
+        this.rating=rating;
         this.name=name;
         this.title=title;
         this.date = date;

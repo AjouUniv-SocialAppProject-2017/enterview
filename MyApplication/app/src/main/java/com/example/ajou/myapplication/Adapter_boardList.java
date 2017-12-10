@@ -75,12 +75,11 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         final Board_item item=items.get(position);
-
-
         holder.contents.setText(item.getDesc());
         holder.name.setText(item.getName());
         holder.title.setText(item.getTitle());
         holder.comment.setText(item.getComment());
+        holder.rating.setText(item.getRating());
         Uri uri = Uri.parse(item.getUrl());
         holder.videoView.setVideoURI(uri);
         final MediaController mediaController = new MediaController(context);
@@ -150,6 +149,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
 
                             commentDesc.setText(null);
                             //수정필요 댓글 update 어케 하냐..
+                            boardReview.removeAllViewsInLayout();
                             GetData getTask = new GetData();
                             getTask.execute(itemId);
 
@@ -183,6 +183,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
                     pw.setAnimationStyle(R.style.Animation_AppCompat_DropDownUp);
                     pw.showAtLocation(popupView, Gravity.CENTER, 0, 0);
 
+                    final String itemId= fr.listId[posi];
 
                     btnClosePopup = (ImageButton) popupView.findViewById(R.id.btn_close_popup);
                     btnClosePopup.setOnClickListener(new View.OnClickListener() {
@@ -192,20 +193,18 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
                         }
                     });
 
-                    save_btn = (Button)popupView.findViewById(R.id.save_btn);
-                    save_btn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            pw.dismiss();
-                        }
-                    });
-
+                    //각각 rating 제어
                     rb =(RatingBar)popupView.findViewById(R.id.ratingBar);
                     rb1 =(RatingBar)popupView.findViewById(R.id.ratingBar1);
                     rb2 =(RatingBar)popupView.findViewById(R.id.ratingBar2);
                     rb3 =(RatingBar)popupView.findViewById(R.id.ratingBar3);
                     rb4 =(RatingBar)popupView.findViewById(R.id.ratingBar4);
                     rb5 =(RatingBar)popupView.findViewById(R.id.ratingBar5);
+
+                    //별점 데이터 read
+                    GetRatingData getData = new GetRatingData();
+                    //수정필요 유저아이디
+                    getData.execute(itemId,"1");
 
                     RatingBar.OnRatingBarChangeListener ratingBarChangeListener = new RatingBar.OnRatingBarChangeListener() {
                         @Override
@@ -221,6 +220,21 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
                     rb3.setOnRatingBarChangeListener(ratingBarChangeListener);
                     rb4.setOnRatingBarChangeListener(ratingBarChangeListener);
                     rb5.setOnRatingBarChangeListener(ratingBarChangeListener);
+
+                    //저장 버튼
+                    save_btn = (Button)popupView.findViewById(R.id.save_btn);
+                    save_btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            InsertRatingData insertTask = new InsertRatingData();
+                            //수정필요 유저아이디
+                            insertTask.execute(itemId,"1",""+rb1.getRating(),""+rb2.getRating(),""+rb3.getRating(),
+                                    ""+rb4.getRating(),""+rb5.getRating(),""+rb.getRating());
+                            pw.dismiss();
+                        }
+                    });
+
+
 
                 }catch (Exception e) {
                     e.printStackTrace();
@@ -450,5 +464,213 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
         }
 
     }
+
+    //★★★★★★★★★★★★★★★★별점★★★★★★★★★★★★★★★★
+    class InsertRatingData extends AsyncTask<String, Void, String > {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+
+
+            //$prdliId $prdcmUserId $prdcmContents
+
+            String brdIdx = (String) params[0];
+            String usrIdx = (String) params[1];
+            String rb1 = (String) params[2];
+            String rb2 = (String) params[3];
+            String rb3 = (String) params[4];
+            String rb4 = (String) params[5];
+            String rb5 = (String) params[6];
+            String rb = (String) params[7];
+
+            String serverURL = "http://52.41.114.24/enterview/insertBrdRating.php";
+            String postParameters = "brdIdx=" + brdIdx + "&usrIdx=" + usrIdx + "&rb1=" + rb1
+                    + "&rb2=" + rb2 + "&rb3=" + rb3 + "&rb4=" + rb4 + "&rb5=" + rb5 + "&rb=" + rb;
+
+            Log.d("이거봐", "" + postParameters);
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                //httpURLConnection.setRequestProperty("content-type", "application/json");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+
+                Log.d("디비 성공", "디비성공함");
+                return sb.toString();
+
+
+            } catch (Exception e) {
+
+                Log.d("디비에러", "디비에러났대");
+                return new String("Error: " + e.getMessage());
+            }
+
+        }
+    }
+
+    private class GetRatingData extends AsyncTask<String, Void, String> {
+
+        String errorString = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            mJsonString = result;
+            showRatingResult();
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+
+            String brdIdx = (String) params[0];
+            String usrIdx = (String) params[1];
+
+            String serverURL = "http://52.41.114.24/enterview/readBrdRating.php";
+            String postParameters = "brdIdx=" + brdIdx + "&usrIdx="+ usrIdx ;
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+                return sb.toString().trim();
+
+
+            } catch (Exception e) {
+                errorString = e.toString();
+                return null;
+            }
+
+        }
+    }
+
+    private void showRatingResult() {
+        try {
+
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray("webnautes");
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String dbrb1 = item.getString("rb1");
+                String dbrb2 = item.getString("rb2");
+                String dbrb3 = item.getString("rb3");
+                String dbrb4 = item.getString("rb4");
+                String dbrb5 = item.getString("rb5");
+                String dbrb = item.getString("rb");
+
+                Log.d("댓글아나와라",dbrb1+","+dbrb2+","+dbrb3+","+dbrb4+","+dbrb5+"==>"+dbrb);
+
+                rb1.setRating(Float.parseFloat(dbrb1));
+                rb2.setRating(Float.parseFloat(dbrb2));
+                rb3.setRating(Float.parseFloat(dbrb3));
+                rb4.setRating(Float.parseFloat(dbrb4));
+                rb5.setRating(Float.parseFloat(dbrb5));
+                rb.setRating(Float.parseFloat(dbrb));
+
+                //  proud.setImage(prdPicture);
+
+                //boardReview_items.add(new BoardReview_item(nick,desc));
+            }
+
+            /*boardReview.setLayoutManager(layoutManager_board_review);
+            Adapter_board_review = new Adapter_board_review(context, boardReview_items, 1);
+            boardReview.setAdapter(Adapter_board_review);*/
+
+            Log.d("GetData", "Success");
+
+        } catch (JSONException e) {
+            Log.d("GetData", "Error");
+            Log.e("에러",e.getMessage());
+        }
+
+    }
+
 
 }

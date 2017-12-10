@@ -286,12 +286,13 @@ public class BoardSearchActivity extends AppCompatActivity {
                 String brdDate = item.getString("brdDate");
                 String brdNickname = item.getString("brdNickname");
                 String brdUrl = item.getString("brdUrl");
+                String brdRating = item.getString("brdRating");
 
                 //Log.d("이미지소스",brdPicture);
 
                 //  proud.setImage(prdPicture);
 
-                board_items.add(new Board_item(R.drawable.board_icon, brdNickname, brdSubject, brdDate, brdContents,
+                board_items.add(new Board_item(brdRating, brdNickname, brdSubject, brdDate, brdContents,
                         "댓글",brdUrl));
             }
 
