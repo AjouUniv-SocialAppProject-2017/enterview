@@ -39,7 +39,6 @@ public class MyPageFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         RelativeLayout layout = (RelativeLayout)inflater.inflate(R.layout.my_page,
                 container, false);
-        /*
         Bundle bundle = getArguments();
         String param_usrIdx = bundle.getString("param_usrIdx"); // 전달한 key 값
         String param_email = bundle.getString("param_email");
@@ -51,7 +50,7 @@ public class MyPageFragment extends Fragment {
         personalNickContents = (TextView) layout.findViewById(R.id.personalNickContents);
         personalIdContents.setText(param_email);
         personalNickContents.setText(param_nickname);
-*/
+
 
         updateBtn = (ImageView) layout.findViewById(R.id.update_btn);
         updateBtn.setOnClickListener(new View.OnClickListener() {

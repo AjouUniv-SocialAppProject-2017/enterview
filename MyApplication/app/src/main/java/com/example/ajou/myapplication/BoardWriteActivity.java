@@ -76,8 +76,6 @@ public class BoardWriteActivity extends AppCompatActivity {
         desc = (EditText) findViewById(R.id.desc);
         videoView = (VideoView) findViewById(R.id.videoView);
 
-        //path 수정필요!
-        String path = "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4";
         videoView.setVideoURI(Uri.parse(path));
 
         final MediaController mediaController = new MediaController(this);
