@@ -78,10 +78,10 @@ public class LoginActivity extends AppCompatActivity {
         int permissionWriteStorage = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int permissionAudio = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO);
 
-        if(permissionCamera == PackageManager.PERMISSION_DENIED || permissionReadStorage == PackageManager.PERMISSION_DENIED
+        if (permissionCamera == PackageManager.PERMISSION_DENIED || permissionReadStorage == PackageManager.PERMISSION_DENIED
                 || permissionWriteStorage == PackageManager.PERMISSION_DENIED || permissionAudio == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(mainActivity, new String[]{Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE
-                    ,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.RECORD_AUDIO}, REQUEST);
+            ActivityCompat.requestPermissions(mainActivity, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE
+                    , Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, REQUEST);
         } else {
             //Toast.makeText(getApplicationContext(),"camera permission authorized",Toast.LENGTH_SHORT).show();
             // resultText.setText("camera permission authorized");
@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = (Button) findViewById(R.id.btn_login);
         signupBtn = (Button) findViewById(R.id.btn_signup);
         input_email = (EditText) findViewById(R.id.input_email);
-        input_password = (EditText)findViewById(R.id.input_password);
+        input_password = (EditText) findViewById(R.id.input_password);
         // login button 클릭 시 이벤트
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ResourceType")
@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 email = input_email.getText().toString();
                 password = input_password.getText().toString();
-                if(email.equals(s) || email.equals(s2)){
+                if (email.equals(s) || email.equals(s2)) {
                     AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
                     alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                     });
                     alert.setMessage("E-mail을 입력해 주세요");
                     alert.show();
-                }else if(password.equals(s) || password.equals(s2)){
+                } else if (password.equals(s) || password.equals(s2)) {
                     AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
                     alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         @Override
@@ -128,7 +128,6 @@ public class LoginActivity extends AppCompatActivity {
                 login();
 
 
-
             }
         });
         // signup button 클릭 시 이벤트
@@ -143,7 +142,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -153,28 +151,28 @@ public class LoginActivity extends AppCompatActivity {
                     String permission = permissions[i];
                     int grantResult = grantResults[i];
                     if (permission.equals(Manifest.permission.CAMERA)) {
-                        if(grantResult == PackageManager.PERMISSION_GRANTED) {
+                        if (grantResult == PackageManager.PERMISSION_GRANTED) {
                             //resultText.setText("camera permission authorized");
                         } else {
                             //resultText.setText("camera permission denied");
                         }
                     }
                     if (permission.equals(Manifest.permission.RECORD_AUDIO)) {
-                        if(grantResult == PackageManager.PERMISSION_GRANTED) {
+                        if (grantResult == PackageManager.PERMISSION_GRANTED) {
                             //resultText.setText("recording audio permission authorized");
                         } else {
                             //resultText.setText("recording audio permission denied");
                         }
                     }
                     if (permission.equals(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                        if(grantResult == PackageManager.PERMISSION_GRANTED) {
+                        if (grantResult == PackageManager.PERMISSION_GRANTED) {
                             //resultText.setText("read/write storage permission authorized");
                         } else {
                             //resultText.setText("read/write storage permission denied");
                         }
                     }
                     if (permission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                        if(grantResult == PackageManager.PERMISSION_GRANTED) {
+                        if (grantResult == PackageManager.PERMISSION_GRANTED) {
                             //resultText.setText("read/write storage permission authorized");
                         } else {
                             //resultText.setText("read/write storage permission denied");
@@ -187,7 +185,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //171113 서버test
-    void login(){
+    void login() {
         // 로그인 구현
         try {
 
@@ -219,7 +217,7 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
 
             /* 인풋 파라메터값 생성 */
-            String param = "email=" + email + "&password=" + password ;
+            String param = "email=" + email + "&password=" + password;
 
             Log.e("POST", param);
             try {
@@ -253,9 +251,9 @@ public class LoginActivity extends AppCompatActivity {
                     buff.append(line + "\n");
                 }
                 data = buff.toString().trim();
-                mJsonString =data;
-                String array ;
-                array = mJsonString.substring(1,mJsonString.length());
+                mJsonString = data;
+                String array;
+                array = mJsonString.substring(1, mJsonString.length());
                 Log.e("나와", array);
 
                 try {
@@ -279,19 +277,19 @@ public class LoginActivity extends AppCompatActivity {
                 /* 서버에서 응답 */
                 Log.e("RECV DATA", data);
                 Log.e("RESULT", data);
-                String result = data.substring(0,1);
+                String result = data.substring(0, 1);
                 Log.e("RESULT", result);
-                if (!(result.equals("0"))||Integer.parseInt(result)!=0) {
+                if (!(result.equals("0")) || Integer.parseInt(result) != 0) {
 
-                    Log.e("RESULT", "성공적으로 처리되었습니다!"+data+"data");
+                    Log.e("RESULT", "성공적으로 처리되었습니다!" + data + "data");
                     //Toast.makeText(getApplicationContext(), "완료", Toast.LENGTH_SHORT).show();
                     userId = data;
                     String cookieTemp = conn.getHeaderField("Set-Cookie");
 
-                    if(cookieTemp != null){
+                    if (cookieTemp != null) {
                         cookies = cookieTemp;
-                       // conn.setRequestProperty("Cookie",cookieTemp);
-                        Log.e("RESULT", "쿠키 :"+cookies);
+                        // conn.setRequestProperty("Cookie",cookieTemp);
+                        Log.e("RESULT", "쿠키 :" + cookies);
                     }
                     /*
                     AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
@@ -306,11 +304,11 @@ public class LoginActivity extends AppCompatActivity {
                     */
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
-                    intent.putExtra("param_email",param_email);
-                    intent.putExtra("param_nickname",param_nickname);
-                    intent.putExtra("param_notification",param_notification);
-                    intent.putExtra("param_major",param_major);
-                    intent.putExtra("param_usrIdx",param_usrIdx);
+                    intent.putExtra("param_email", param_email);
+                    intent.putExtra("param_nickname", param_nickname);
+                    intent.putExtra("param_notification", param_notification);
+                    intent.putExtra("param_major", param_major);
+                    intent.putExtra("param_usrIdx", param_usrIdx);
 
                     startActivity(intent);
 
@@ -327,100 +325,9 @@ public class LoginActivity extends AppCompatActivity {
 
             return null;
         }
+
         private void showResult() {
 
         }
     }
-/*
-    public class GetData extends AsyncTask<String, Void, String> {
-
-        String errorString = null;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            mJsonString = result;
-            showResult();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            String serverURL = params[0];
-
-            try {
-
-                URL url = new URL(serverURL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-                httpURLConnection.setReadTimeout(5000);
-                httpURLConnection.setConnectTimeout(5000);
-                httpURLConnection.connect();
-
-                int responseStatusCode = httpURLConnection.getResponseCode();
-
-                InputStream inputStream;
-                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
-                    inputStream = httpURLConnection.getInputStream();
-                } else {
-                    inputStream = httpURLConnection.getErrorStream();
-                }
-
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                StringBuilder sb = new StringBuilder();
-                String line;
-
-                while ((line = bufferedReader.readLine()) != null) {
-                    sb.append(line);
-                }
-
-                bufferedReader.close();
-                return sb.toString().trim();
-
-
-            } catch (Exception e) {
-                errorString = e.toString();
-                return null;
-            }
-
-        }
-    }
-    private void showResult() {
-    try {
-
-        JSONObject jsonObject = new JSONObject(mJsonString);
-        JSONArray jsonArray = jsonObject.getJSONArray("webnautes");
-
-        ArrayList<Board_item> board_items = new ArrayList<>();
-
-        for (int i = 0; i < jsonArray.length(); i++) {
-
-            JSONObject item = jsonArray.getJSONObject(i);
-            param_email = item.getString("email");
-            param_password = item.getString("password");
-            param_nickname = item.getString("nickname");
-            param_notification = item.getString("notification");
-            param_major = item.getString("major");
-
-        }
-
-        //boardView.setLayoutManager(layoutManager_board);
-        //Adapter_board = new Adapter_boardList(getActivity(), board_items, 1);
-        // Adapter_proud.notifyDataSetChanged();
-        //boardView.setAdapter(Adapter_board);
-
-    } catch (JSONException e) {
-
-    }
-}
-    */
-
 }
