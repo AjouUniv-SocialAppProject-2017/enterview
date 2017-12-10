@@ -20,7 +20,7 @@
        android:layout_marginLeft="8dp"
        android:layout_marginRight="8dp"
        android:background="@drawable/rounded"
-       android:text="직무"
+       android:text="서비스/마케팅"
        android:textSize="20dp"
        android:textColor="@color/colorPrimary"/>
    <Button
@@ -32,7 +32,7 @@
        android:layout_marginRight="8dp"
        android:background="@drawable/rounded"
        android:textSize="20dp"
-       android:text="직무"
+       android:text="IT/전자"
        android:textColor="@color/colorPrimary"/>
    <Button
        android:id="@+id/category3"
@@ -43,7 +43,7 @@
        android:layout_marginRight="8dp"
        android:background="@drawable/rounded"
        android:textSize="20dp"
-       android:text="직무"
+       android:text="금융권"
        android:textColor="@color/colorPrimary"/>
   </LinearLayout>
 
@@ -63,7 +63,7 @@
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
       android:background="@drawable/rounded"
-      android:text="직무"
+      android:text="압박"
       android:textSize="20dp"
       android:textColor="@color/colorPrimary"/>
   <TextView
@@ -85,7 +85,7 @@
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
       android:background="@drawable/rounded"
-      android:text="직무"
+      android:text="경험"
       android:textSize="20dp"
       android:textColor="@color/colorPrimary"/>
  </LinearLayout>
@@ -105,7 +105,7 @@
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
       android:background="@drawable/rounded"
-      android:text="직무"
+      android:text="인성"
       android:textSize="20dp"
       android:textColor="@color/colorPrimary"/>
   <Button
@@ -116,7 +116,7 @@
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
       android:background="@drawable/rounded"
-      android:text="직무"
+      android:text="일반"
       android:textSize="20dp"
       android:textColor="@color/colorPrimary"/>
   <Button
@@ -127,7 +127,7 @@
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
       android:background="@drawable/rounded"
-      android:text="직무"
+      android:text="기타"
       android:textSize="20dp"
       android:textColor="@color/colorPrimary"/>
  </LinearLayout>
