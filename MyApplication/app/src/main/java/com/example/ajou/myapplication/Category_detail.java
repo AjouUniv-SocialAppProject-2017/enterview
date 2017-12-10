@@ -47,6 +47,7 @@ public class Category_detail extends AppCompatActivity {
     static String mJsonString;
     String[] questionlist = new String[100];
     int count = 0;
+    int flag = 0;
     ArrayList<String> question_item = new ArrayList<>();
 
 
@@ -55,6 +56,7 @@ public class Category_detail extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.category_detail);
+        flag = 0;
         Intent intent = getIntent();
         qstnCategory = intent.getExtras().getInt("qstnCategory");
         final String param_usrIdx = intent.getExtras().getString("param_usrIdx");
@@ -64,12 +66,17 @@ public class Category_detail extends AppCompatActivity {
         record_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if( flag == 0){
+                    Toast.makeText(getApplicationContext(),"질문을 선택해주세요",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent  = new Intent(getApplicationContext(),RecordActivity.class);
+                    intent.putExtra("finalquestion",finalquestion);
+                    intent.putExtra("param_usrIdx",param_usrIdx);
+                    startActivity(intent);
+                }
                // Toast.makeText(getApplicationContext(),category_num+"번쨰 리스트",Toast.LENGTH_LONG).show();
                 //Intent intent = new Intent(getApplicationContext(), BoardWriteActivity.class);
-                Intent intent  = new Intent(getApplicationContext(),RecordActivity.class);
-                intent.putExtra("finalquestion",finalquestion);
-                intent.putExtra("param_usrIdx",param_usrIdx);
-                startActivity(intent);
+
 
             }
         });
@@ -94,7 +101,8 @@ public class Category_detail extends AppCompatActivity {
                 View child = rv.findChildViewUnder(e.getX(), e.getY());
                 if (child != null && gestureDetector.onTouchEvent(e)) {
                     TextView tv = (TextView) rv.getChildViewHolder(child).itemView.findViewById(R.id.question);
-                    Toast.makeText(getApplicationContext(), tv.getText().toString(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(), tv.getText().toString(), Toast.LENGTH_SHORT).show();
+                    flag = 1;
                     selectedQuestion.setText(tv.getText().toString());
                     finalquestion = tv.getText().toString();
                 }
