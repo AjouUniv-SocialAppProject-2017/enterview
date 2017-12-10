@@ -27,6 +27,8 @@ public class CategoryFragment extends Fragment {
     private Button category6;
     private Button category7;
     private Button category8;
+
+    int qstnCategory;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,8 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
-                intent.putExtra("category_num",1);
+                qstnCategory =1;
+                intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
@@ -56,7 +59,8 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
-                intent.putExtra("category_num",2);
+                qstnCategory =2;
+                intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
@@ -66,7 +70,8 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
-                intent.putExtra("category_num",3);
+                qstnCategory =3;
+                intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
@@ -76,7 +81,8 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
-                intent.putExtra("category_num",4);
+                qstnCategory =4;
+                intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
@@ -86,7 +92,8 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
-                intent.putExtra("category_num",5);
+                qstnCategory =5;
+                intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
@@ -96,7 +103,8 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
-                intent.putExtra("category_num",6);
+                qstnCategory =6;
+                intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
@@ -106,7 +114,8 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
-                intent.putExtra("category_num",7);
+                qstnCategory =7;
+                intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
@@ -116,7 +125,8 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Category_detail.class);
-                intent.putExtra("category_num",8);
+                qstnCategory =8;
+                intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
                 startActivity(intent);
             }
