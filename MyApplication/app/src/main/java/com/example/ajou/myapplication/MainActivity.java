@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             param_notification = intent.getExtras().getString("param_notification");
             param_major = intent.getExtras().getString("param_major");
             param_usrIdx = intent.getExtras().getString("param_usrIdx");
-            Toast.makeText(getApplicationContext(), param_email + "/" + param_nickname + "/" + param_major + "/" + param_notification + "/" + param_usrIdx, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), param_email + "/" + param_nickname + "/" + param_major + "/" + param_notification + "/" + param_usrIdx, Toast.LENGTH_LONG).show();
             flag ++;
         }
         pager = (ViewPager)findViewById(R.id.pager);
@@ -114,5 +114,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         flag = 0 ;
+        Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+        startActivity(intent);
     }
 }

@@ -11,6 +11,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -45,6 +46,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
     List<Board_item> items;
     int item_layout;
     private View popupView;
+    private View popupView2;
     private ImageButton btnClosePopup;
     RatingBar rb, rb1, rb2, rb3, rb4, rb5;
     Button save_btn;
@@ -83,10 +85,14 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
         holder.title.setText(item.getTitle());
         holder.comment.setText(item.getComment());
         holder.rating.setText(item.getRating());
+
         Uri uri = Uri.parse(item.getUrl());
         holder.videoView.setVideoURI(uri);
+        holder.videoView.seekTo(50);
+        /*
         final MediaController mediaController = new MediaController(context);
         holder.videoView.setMediaController(mediaController);
+        */
 
         Log.d("name Url 확인",""+item.getName()+"/"+item.getUrl());
 
@@ -96,6 +102,17 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
         final int width = dm.widthPixels;
         final int height = dm.heightPixels;
+
+        holder.videoView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Intent intent = new Intent(context,VideoPlay.class);
+                intent.putExtra("path",item.getUrl());
+                context.startActivity(intent);
+                return false;
+            }
+        });
+
 
 
         // 댓글 클릭 시 댓글창 생성

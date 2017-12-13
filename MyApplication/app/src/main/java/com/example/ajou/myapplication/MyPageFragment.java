@@ -21,7 +21,11 @@ public class MyPageFragment extends Fragment {
     ImageView updateBtn;
     TextView personalIdContents;
     TextView personalNickContents;
-
+    String param_usrIdx;
+    String param_email ;
+    String param_nickname ;
+    String param_notification;
+    String param_major ;
 /*    public MyPageFragment()
     {
         // required
@@ -40,11 +44,11 @@ public class MyPageFragment extends Fragment {
         RelativeLayout layout = (RelativeLayout)inflater.inflate(R.layout.my_page,
                 container, false);
         Bundle bundle = getArguments();
-        String param_usrIdx = bundle.getString("param_usrIdx"); // 전달한 key 값
-        String param_email = bundle.getString("param_email");
-        String param_nickname = bundle.getString("param_nickname");
-        String param_notification = bundle.getString("param_notification");
-        String param_major = bundle.getString("param_major");
+        param_usrIdx = bundle.getString("param_usrIdx"); // 전달한 key 값
+        param_email = bundle.getString("param_email");
+        param_nickname = bundle.getString("param_nickname");
+        param_notification = bundle.getString("param_notification");
+        param_major = bundle.getString("param_major");
 
         personalIdContents = (TextView) layout.findViewById(R.id.personalIdContents);
         personalNickContents = (TextView) layout.findViewById(R.id.personalNickContents);
@@ -56,7 +60,12 @@ public class MyPageFragment extends Fragment {
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SignupActivity.class);
+                Intent intent = new Intent(getActivity(), Mod_information.class);
+                intent.putExtra("param_usrIdx",param_usrIdx);
+                intent.putExtra("param_email",param_email);
+                intent.putExtra("param_nickname",param_nickname);
+                intent.putExtra("param_notification",param_notification);
+                intent.putExtra("param_major",param_major);
                 startActivity(intent);
             }
         });

@@ -36,11 +36,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by thfad_000 on 2017-05-08.
  */
 public class BoardWriteActivity extends AppCompatActivity {
+
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -83,6 +86,7 @@ public class BoardWriteActivity extends AppCompatActivity {
 
     }
 
+
     // 업로드 버튼
     public void questionWrite_upload(View v){
 
@@ -99,6 +103,7 @@ public class BoardWriteActivity extends AppCompatActivity {
         Intent intent = new Intent(BoardWriteActivity.this, MainActivity.class);
         startActivity(intent);
         uploadVideo();
+
     }
 
     // 뒤로가기 버튼
