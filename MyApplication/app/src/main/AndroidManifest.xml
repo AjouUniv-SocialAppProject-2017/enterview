@@ -31,6 +31,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
             android:name=".BoardWriteActivity"
@@ -47,6 +48,10 @@
         <activity android:name=".VideoPlay"
             android:screenOrientation="portrait"/>
         <activity android:name=".Mod_information"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MyBoardlist"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MyCommentlist"
             android:screenOrientation="portrait"/>
     </application>
 

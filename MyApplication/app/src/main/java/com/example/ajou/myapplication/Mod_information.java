@@ -1,5 +1,6 @@
 package com.example.ajou.myapplication;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -214,7 +215,12 @@ public class Mod_information extends AppCompatActivity {
         {
             Mod_information.InsertData task = new Mod_information.InsertData();
             task.execute(param_usrIdx,sEmail, sPasswd, sNickName,sNotification,sMajor );
-
+            Intent intent = new Intent();
+            intent.putExtra("sEmail",sEmail);
+            intent.putExtra("sNickName",sNickName);
+            intent.putExtra("sNotification",sNotification);
+            intent.putExtra("sMajor",sMajor);
+            setResult(Activity.RESULT_OK,intent);
             this.finish();
         }
         // 비밀번호 불일치

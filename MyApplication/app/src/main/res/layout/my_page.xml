@@ -102,8 +102,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/part1"
-            android:id="@+id/part3">
-            <TextView
+            android:id="@+id/part3"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <Button
                 android:id="@+id/myText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,26 +117,18 @@
                 android:textColor="@color/colorAccent"
                 android:textAlignment="center"
                 android:textSize="24sp" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/myText"
-                android:padding="5dip">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="2017-11-17 자기소개\n2017-11-20 지원동기"
-                    android:textSize="16sp"/>
-            </LinearLayout>
+
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/part3"
-            android:id="@+id/part4">
+            android:id="@+id/part4"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
 
-        <TextView
+        <Button
             android:id="@+id/myComment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -146,18 +140,6 @@
             android:textColor="@color/colorAccent"
             android:textAlignment="center"
             android:textSize="24sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/myComment"
-                android:padding="5dip">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="2017-11-15 자신감 있는 목소리가 좋으시네요!\n2017-11-17 와.. 좋아요\n2017-11-17 첫 부분을 이렇게 바꿔보는 것은"
-                    android:textSize="16sp"/>
-            </LinearLayout>
 
         </RelativeLayout>
     </RelativeLayout>
