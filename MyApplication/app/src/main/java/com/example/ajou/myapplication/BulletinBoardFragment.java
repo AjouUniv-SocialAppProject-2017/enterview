@@ -68,7 +68,7 @@ public class BulletinBoardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-       // RelativeLayout layout = (RelativeLayout)inflater.inflate(R.layout.bulletin_board,
+       // RelativeLayout mod_information = (RelativeLayout)inflater.inflate(R.mod_information.bulletin_board,
        //         container, false);
         final View view = inflater.inflate(R.layout.bulletin_board, container, false);
         board_item = new Board_item();

@@ -36,11 +36,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by thfad_000 on 2017-05-08.
  */
 public class BoardWriteActivity extends AppCompatActivity {
+
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -76,14 +79,13 @@ public class BoardWriteActivity extends AppCompatActivity {
         desc = (EditText) findViewById(R.id.desc);
         videoView = (VideoView) findViewById(R.id.videoView);
 
-        //path 수정필요!
-        String path = "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4";
         videoView.setVideoURI(Uri.parse(path));
 
         final MediaController mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
 
     }
+
 
     // 업로드 버튼
     public void questionWrite_upload(View v){
@@ -101,6 +103,7 @@ public class BoardWriteActivity extends AppCompatActivity {
         Intent intent = new Intent(BoardWriteActivity.this, MainActivity.class);
         startActivity(intent);
         uploadVideo();
+
     }
 
     // 뒤로가기 버튼

@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             param_notification = intent.getExtras().getString("param_notification");
             param_major = intent.getExtras().getString("param_major");
             param_usrIdx = intent.getExtras().getString("param_usrIdx");
-            Toast.makeText(getApplicationContext(), param_email + "/" + param_nickname + "/" + param_major + "/" + param_notification + "/" + param_usrIdx, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), param_email + "/" + param_nickname + "/" + param_major + "/" + param_notification + "/" + param_usrIdx, Toast.LENGTH_LONG).show();
             flag ++;
         }
         pager = (ViewPager)findViewById(R.id.pager);
@@ -90,14 +90,15 @@ public class MainActivity extends AppCompatActivity {
                     boardFragment.setArguments(bundle1);
                     return boardFragment;
                 case 2:
-                    Fragment fragment3 = new MyPageFragment();
-                    Bundle bundle3 = new Bundle(1); // 파라미터는 전달할 데이터 개수
-                    bundle3.putString("param_email",param_email);
-                    bundle3.putString("param_nickname",param_nickname);
-                    bundle3.putString("param_notification",param_notification);
-                    bundle3.putString("param_major",param_major);
-                    bundle3.putString("param_usrIdx",param_usrIdx);
-                    return fragment3;
+                    Fragment myPageFragment = new MyPageFragment();
+                    Bundle bundle2 = new Bundle(1); // 파라미터는 전달할 데이터 개수
+                    bundle2.putString("param_email",param_email);
+                    bundle2.putString("param_nickname",param_nickname);
+                    bundle2.putString("param_notification",param_notification);
+                    bundle2.putString("param_major",param_major);
+                    bundle2.putString("param_usrIdx",param_usrIdx);
+                    myPageFragment.setArguments(bundle2);
+                    return myPageFragment;
                 default:
                     return null;
             }
@@ -114,5 +115,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         flag = 0 ;
+        Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+        startActivity(intent);
     }
 }

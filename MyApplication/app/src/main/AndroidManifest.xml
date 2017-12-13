@@ -44,6 +44,11 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".RecordActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".VideoPlay"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Mod_information"
+            android:screenOrientation="portrait"/>
     </application>
+
 
 </manifest>

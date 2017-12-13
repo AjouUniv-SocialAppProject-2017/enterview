@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by ajou on 2017-11-28.
@@ -28,6 +30,9 @@ public class RecordActivity extends AppCompatActivity {
     Camera camera;
     String path = "/sdcard/";
     TextView finalquestion;
+    long mNow;
+    Date mDate;
+    SimpleDateFormat mFormat = new SimpleDateFormat("yyyyMMddhhmmss");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,7 +43,7 @@ public class RecordActivity extends AppCompatActivity {
         final String question = intent.getExtras().getString("finalquestion");
         final String param_usrIdx = intent.getExtras().getString("param_usrIdx");
 
-        path +=param_usrIdx+".mp4";
+        path +=param_usrIdx+"_"+getTime()+".mp4";
         Button button = (Button) findViewById(R.id.button);
         Button button2 = (Button) findViewById(R.id.button2);
         holder = surfaceView.getHolder();
@@ -94,6 +99,11 @@ public class RecordActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    private String getTime(){
+        mNow = System.currentTimeMillis();
+        mDate = new Date(mNow);
+        return mFormat.format(mDate);
     }
 
 }
