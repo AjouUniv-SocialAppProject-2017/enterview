@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.PopupWindow;
 import android.widget.RatingBar;
@@ -48,7 +49,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
     private ImageButton btnClosePopup;
     RatingBar rb, rb1, rb2, rb3, rb4, rb5;
     Button save_btn;
-    VideoView videoView;
+    LinearLayout popup_element;
 
     BulletinBoardFragment fr = new BulletinBoardFragment();
 
@@ -59,6 +60,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
     String mJsonString;
 
     String usrIdx;
+    String check = "";
 
     public Adapter_boardList(Context context, List<Board_item> items, int item_layout, String usrIdx) {
         this.context=context;
@@ -562,7 +564,8 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
             String usrIdx = (String) params[1];
 
             String serverURL = "http://52.41.114.24/enterview/readBrdRating.php";
-            String postParameters = "brdIdx=" + brdIdx + "&usrIdx="+ usrIdx ;
+            String postParameters = "brdIdx=" + brdIdx + "&usrIdx="+ usrIdx;
+            Log.d("왜 안나오징",postParameters);
 
             try {
 
@@ -599,10 +602,8 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
                 while ((line = bufferedReader.readLine()) != null) {
                     sb.append(line);
                 }
-
                 bufferedReader.close();
                 return sb.toString().trim();
-
 
             } catch (Exception e) {
                 errorString = e.toString();
@@ -618,6 +619,8 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
             JSONObject jsonObject = new JSONObject(mJsonString);
             JSONArray jsonArray = jsonObject.getJSONArray("webnautes");
 
+            Log.d("제발 좀", jsonArray.toString());
+
             for (int i = 0; i < jsonArray.length(); i++) {
 
                 JSONObject item = jsonArray.getJSONObject(i);
@@ -628,6 +631,31 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
                 String dbrb4 = item.getString("rb4");
                 String dbrb5 = item.getString("rb5");
                 String dbrb = item.getString("rb");
+
+                //내 글일 때
+                if(item.getString("my").equals("my")){
+                    //레이팅바 조절 X
+                    rb1.setIsIndicator(true);
+                    rb2.setIsIndicator(true);
+                    rb3.setIsIndicator(true);
+                    rb4.setIsIndicator(true);
+                    rb5.setIsIndicator(true);
+                    rb.setIsIndicator(true);
+
+                    //저장버튼 삭제
+                    popup_element = (LinearLayout)popupView.findViewById(R.id.popup_element);
+                    TextView myRatingTxt = new TextView(popupView.getContext());
+                    myRatingTxt.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+                    myRatingTxt.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
+                    myRatingTxt.setPadding(10,10,0,10);
+                    myRatingTxt.setText("다른 회원들이 평가한 각 항목의 평균 점수입니다.");
+                    popup_element.addView(myRatingTxt);
+                    popup_element.removeView(save_btn);
+
+                }else{
+
+                    Log.d("남의 글","others");
+                }
 
                 Log.d("댓글아나와라",dbrb1+","+dbrb2+","+dbrb3+","+dbrb4+","+dbrb5+"==>"+dbrb);
 

@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     Fragment boardFragment = new BulletinBoardFragment();
                     Bundle bundle1 = new Bundle(1); // 파라미터는 전달할 데이터 개수
                     bundle1.putString("param_usrIdx", param_usrIdx); // key , value
+                    bundle1.putString("param_major",param_major);
                     boardFragment.setArguments(bundle1);
                     return boardFragment;
                 case 2:
