@@ -13,6 +13,7 @@ public class Board_item {
     String desc;
     String comment;
     String url;
+    String brdusrIdx;
 
 
     public String getRating(){ return this.rating; }
@@ -26,10 +27,11 @@ public class Board_item {
     }
     public String getComment(){ return this.comment; }
     public String getUrl(){ return this.url; }
+    public String getBrdusrIdx(){ return this.brdusrIdx; }
 
     public Board_item(){}
 
-    public Board_item(String rating, String name, String title, String date, String desc, String comment,String url){
+    public Board_item(String rating, String name, String title, String date, String desc, String comment,String url, String brdusrIdx){
 
         this.rating=rating;
         this.name=name;
@@ -38,6 +40,7 @@ public class Board_item {
         this.desc = desc;
         this.comment = comment;
         this.url = url;
+        this.brdusrIdx = brdusrIdx;
 
     }
 

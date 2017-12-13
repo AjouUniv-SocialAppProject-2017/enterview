@@ -96,6 +96,7 @@
             android:layout_toRightOf="@+id/star"
             android:clickable="true"
             android:text="별점주기"
+            android:layout_marginRight="25dip"
             android:paddingRight="5dip"
             android:paddingLeft="0dip"
             android:paddingTop="5dip"

@@ -31,10 +31,9 @@ public class BoardSearchActivity extends AppCompatActivity {
 
     private RecyclerView frqView;
     private RecyclerView.Adapter Adapter_board;
-    BoardSearch_frequestion_item frq_item;
     private RecyclerView.LayoutManager layoutManager_board;
 
-    String param_usrIdx;
+    String param_usrIdx, param_major;
 
     String mJsonString;
 
@@ -46,141 +45,11 @@ public class BoardSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_search);
 
-        frq_item = new BoardSearch_frequestion_item();
-
-        frqView = (RecyclerView)findViewById(R.id.fsq);
-        frqView.setHasFixedSize(true);
-
-        layoutManager_board = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-
         Intent intent = getIntent();
         param_usrIdx = intent.getExtras().getString("param_usrIdx");
-
-        //데이터 받아오기
-        GetData task = new GetData();
-        task.execute("http://52.41.114.24/enterview/boardList.php");
+        param_major = intent.getExtras().getString("param_major");
     }
 
-    public class GetData extends AsyncTask<String, Void, String> {
-
-        String errorString = null;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            mJsonString = result;
-            showResult();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            String serverURL = params[0];
-
-            try {
-
-                URL url = new URL(serverURL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-                httpURLConnection.setReadTimeout(5000);
-                httpURLConnection.setConnectTimeout(5000);
-                httpURLConnection.connect();
-
-                int responseStatusCode = httpURLConnection.getResponseCode();
-
-                InputStream inputStream;
-                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
-                    inputStream = httpURLConnection.getInputStream();
-                } else {
-                    inputStream = httpURLConnection.getErrorStream();
-                }
-
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                StringBuilder sb = new StringBuilder();
-                String line;
-
-                while ((line = bufferedReader.readLine()) != null) {
-                    sb.append(line);
-                }
-
-                bufferedReader.close();
-                return sb.toString().trim();
-
-
-            } catch (Exception e) {
-                errorString = e.toString();
-                return null;
-            }
-
-        }
-    }
-
-    private void showResult() {
-        try {
-
-            JSONObject jsonObject = new JSONObject(mJsonString);
-            JSONArray jsonArray = jsonObject.getJSONArray("webnautes");
-
-            ArrayList<BoardSearch_frequestion_item> frq_items = new ArrayList<>();
-
-            /*for (int i = 0; i < jsonArray.length(); i++) {
-
-                JSONObject item = jsonArray.getJSONObject(i);
-
-                String frqContents = item.getString("frqContents");
-                frq_items.add(new BoardSearch_frequestion_item("내용"));
-            }*/
-
-            //임시로 질문 내용0,내용1,내용2...
-            for (int i = 0; i <5; i++) {
-                frq_items.add(new BoardSearch_frequestion_item("내용 "+i));
-            }
-
-            frqView.setLayoutManager(layoutManager_board);
-            Adapter_board = new Adapter_frqList(this, frq_items, 1);
-            // Adapter_proud.notifyDataSetChanged();
-            frqView.setAdapter(Adapter_board);
-            final GestureDetector gestureDetector = new GestureDetector(BoardSearchActivity.this, new GestureDetector.SimpleOnGestureListener() {
-                @Override
-                public boolean onSingleTapUp(MotionEvent e) {
-                    return true;
-                }
-            });
-
-            //자주 검색하는 질문 항목 클릭시에
-            frqView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-                @Override
-                public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                    View child = rv.findChildViewUnder(e.getX(), e.getY());
-                    if (child != null && gestureDetector.onTouchEvent(e)) {
-                        Intent intent = new Intent(frqView.getContext(), BoardDetailActivity.class);
-                        frqView.getContext().startActivity(intent);
-                    }
-                    return false;
-                }
-
-                @Override
-                public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-                }
-
-                @Override
-                public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-                }
-            });
-        } catch (JSONException e) {
-        }
-
-    }
 
     public void srchBtnClick(View v){
         LinearLayout frqLayout = (LinearLayout)findViewById(R.id.frqLayout);
@@ -197,13 +66,15 @@ public class BoardSearchActivity extends AppCompatActivity {
 
         //같은직무 체크박스
         CheckBox checkBox = (CheckBox)findViewById(R.id.checkBox);
-        int sameJobIsChecked = (checkBox.isChecked()) ? 1 : 0;
+        String sameJobIsChecked = (checkBox.isChecked()) ? param_major : "";
+        sameJobIsChecked = URLEncoder.encode(sameJobIsChecked);
 
+        //검색 결과 받아오기
         GetSearchData task = new GetSearchData();
-        task.execute("http://52.41.114.24/enterview/boardList.php?searchKey="+searchKey_txt+"&sameJob="+sameJobIsChecked+"&usrIdx"+param_usrIdx);
-        Log.d("과연",param_usrIdx);
+        task.execute("http://52.41.114.24/enterview/boardList.php?searchKey="+searchKey_txt+"&sameJob="+sameJobIsChecked+"&usrIdx="+param_usrIdx);
+
         layoutManager_board = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-        Log.d("srchBtnClick","srchBtnClick");
+
     }
 
     public class GetSearchData extends AsyncTask<String, Void, String> {
@@ -285,7 +156,7 @@ public class BoardSearchActivity extends AppCompatActivity {
 
                 String brdIdx = item.getString("brdIdx");
                 listBoardId[i] = brdIdx;
-                Log.d("여기 리스트 아이디",""+listBoardId[i]);
+
                 String brdContents = item.getString("brdContents");
                 String brdSubject = item.getString("brdSubject");
                 String brdDate = item.getString("brdDate");
@@ -295,11 +166,12 @@ public class BoardSearchActivity extends AppCompatActivity {
                 if(brdRating.equals("")||brdRating.equals("null")){
                     brdRating="별점주기";
                 }
+                String brdUserId = item.getString("brdUserId");
 
-                Log.d("유저아이디",item.getString("usrIdx"));
+                Log.d("확인확인",brdUserId+","+param_usrIdx);
 
                 board_items.add(new Board_item(brdRating, brdNickname, brdSubject, brdDate, brdContents,
-                        "댓글",brdUrl));
+                        "댓글",brdUrl,brdUserId));
             }
 
 
@@ -307,17 +179,19 @@ public class BoardSearchActivity extends AppCompatActivity {
             if(jsonArray.length()<=0){
                 Log.d("검색결과없을때","여기로");
                 LinearLayout searchBoard = (LinearLayout)findViewById(R.id.searchBoard);
+                searchBoard.removeAllViews();
                 TextView noSearchResult = new TextView(BoardSearchActivity.this);
-                noSearchResult.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                noSearchResult.setPadding(10, 10, 10, 10);
+                noSearchResult.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                noSearchResult.setPadding(50, 100, 10, 10);
                 noSearchResult.setTextColor(getResources().getColor(R.color.colorAccent));
                 noSearchResult.setTextSize(13);
+                //noSearchResult.setTextAlignment();
                 noSearchResult.setText("검색결과가 없습니다.");
                 searchBoard.addView(noSearchResult);
             }
 
             boardView.setLayoutManager(layoutManager_board);
-            Adapter_board = new Adapter_boardList(this, board_items, 1,param_usrIdx);
+            Adapter_board = new Adapter_boardList(this, board_items, 1,param_usrIdx,2);
             // Adapter_proud.notifyDataSetChanged();
             boardView.setAdapter(Adapter_board);
 
