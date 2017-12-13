@@ -9,6 +9,7 @@ package com.example.ajou.myapplication;
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import java.util.ArrayList;
         import java.util.List;
 /**
  * Created by ajou on 2017-12-13.
@@ -17,15 +18,17 @@ package com.example.ajou.myapplication;
 
 public class Adapter_mycommentList  extends RecyclerView.Adapter<Adapter_mycommentList.ViewHolder>  {
     Context context;
-    List<String> items;
+    ArrayList<Mycommentlist_item> items;
     int item_layout;
+    String param_usrIdx;
     //Category_detail activity = new Category_detail();
 
 
-    public Adapter_mycommentList(Context context, List<String> items, int item_layout) {
+    public Adapter_mycommentList(Context context, ArrayList<Mycommentlist_item> items, int item_layout, String param_usrIdx) {
         this.context=context;
         this.items=items;
         this.item_layout=item_layout;
+        this.param_usrIdx=param_usrIdx;
     }
 
     @Override
@@ -37,16 +40,18 @@ public class Adapter_mycommentList  extends RecyclerView.Adapter<Adapter_mycomme
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final String item = items.get(position);
-        holder.question.setText(""+item);
-        /*
-       holder.question.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Toast.makeText(context,item,Toast.LENGTH_SHORT).show();
-           }
-       });
-*/
+        final Mycommentlist_item item = items.get(position);
+        holder.question.setText(item.getDate()+" "+item.getComment());
+        holder.question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,BoardDetailActivity.class);
+                intent.putExtra("brdIdx",item.getBrdIdx());
+                intent.putExtra("param_usrIdx",param_usrIdx);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override

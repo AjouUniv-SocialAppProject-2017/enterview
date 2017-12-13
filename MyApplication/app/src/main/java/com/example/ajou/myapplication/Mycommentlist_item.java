@@ -7,6 +7,7 @@ package com.example.ajou.myapplication;
 public class Mycommentlist_item {
     String comment;
     String date;
+    String brdIdx;
 
     String getComment(){
         return comment;
@@ -14,11 +15,13 @@ public class Mycommentlist_item {
     String getDate(){
         return date;
     }
+    String getBrdIdx() {return brdIdx;}
 
     public Mycommentlist_item(){}
 
-    public Mycommentlist_item(String comment, String date){
+    public Mycommentlist_item(String comment, String date, String brdIdx){
         this.date = date;
         this.comment = comment;
+        this.brdIdx=brdIdx;
     }
 }

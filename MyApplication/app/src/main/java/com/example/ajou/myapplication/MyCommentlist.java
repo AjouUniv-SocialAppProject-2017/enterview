@@ -36,7 +36,7 @@ public class MyCommentlist extends AppCompatActivity {
     private RecyclerView.Adapter Adapter_mycommentList;
     private RecyclerView.LayoutManager layoutManager_mycomment;
     String[] commentlist = new String[100];
-    ArrayList<String> Mycommentlist_item = new ArrayList<>();
+    ArrayList<Mycommentlist_item> Mycommentlist_item = new ArrayList<>();
     static String mJsonString;
     int count = 0;
     @Override
@@ -137,11 +137,12 @@ public class MyCommentlist extends AppCompatActivity {
                     commentlist[i] = item.getString("cmntDate")+item.getString("cmntContents");
                     count++;
                     Log.e("나와", commentlist[i]);
-                    Mycommentlist_item.add(commentlist[i]);
+                    Mycommentlist_item.add(new Mycommentlist_item(item.getString("cmntContents"),item.getString("cmntDate"),item.getString("brdIdx")));
+
                 }
 
                 mycommentView.setLayoutManager(layoutManager_mycomment);
-                Adapter_mycommentList = new Adapter_mycommentList(getApplicationContext(), Mycommentlist_item, 1);
+                Adapter_mycommentList = new Adapter_mycommentList(MyCommentlist.this, Mycommentlist_item, 1,param_usrIdx);
                 mycommentView.setAdapter(Adapter_mycommentList);
 
             } catch (JSONException e) {
