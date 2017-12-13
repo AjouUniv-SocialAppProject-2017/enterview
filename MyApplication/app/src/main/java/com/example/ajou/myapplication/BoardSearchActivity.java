@@ -156,7 +156,7 @@ public class BoardSearchActivity extends AppCompatActivity {
 
                 String brdIdx = item.getString("brdIdx");
                 listBoardId[i] = brdIdx;
-                Log.d("여기 리스트 아이디",""+listBoardId[i]);
+
                 String brdContents = item.getString("brdContents");
                 String brdSubject = item.getString("brdSubject");
                 String brdDate = item.getString("brdDate");
@@ -168,6 +168,7 @@ public class BoardSearchActivity extends AppCompatActivity {
                 }
                 String brdUserId = item.getString("brdUserId");
 
+                Log.d("확인확인",brdUserId+","+param_usrIdx);
 
                 board_items.add(new Board_item(brdRating, brdNickname, brdSubject, brdDate, brdContents,
                         "댓글",brdUrl,brdUserId));
@@ -190,7 +191,7 @@ public class BoardSearchActivity extends AppCompatActivity {
             }
 
             boardView.setLayoutManager(layoutManager_board);
-            Adapter_board = new Adapter_boardList(this, board_items, 1,param_usrIdx);
+            Adapter_board = new Adapter_boardList(this, board_items, 1,param_usrIdx,2);
             // Adapter_proud.notifyDataSetChanged();
             boardView.setAdapter(Adapter_board);
 

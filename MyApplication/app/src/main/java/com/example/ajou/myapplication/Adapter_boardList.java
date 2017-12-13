@@ -53,8 +53,6 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
     Button save_btn;
     LinearLayout popup_element;
 
-    BulletinBoardFragment fr = new BulletinBoardFragment();
-
     private RecyclerView boardReview;
     private  RecyclerView.Adapter Adapter_board_review;
     private RecyclerView.LayoutManager layoutManager_board_review;
@@ -62,13 +60,14 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
     String mJsonString;
 
     String usrIdx;
-    String check = "";
+    int check = 0;
 
-    public Adapter_boardList(Context context, List<Board_item> items, int item_layout, String usrIdx) {
+    public Adapter_boardList(Context context, List<Board_item> items, int item_layout, String usrIdx, int check) {
         this.context=context;
         this.items=items;
         this.item_layout=item_layout;
         this.usrIdx=usrIdx;
+        this.check=check;
     }
 
     @Override
@@ -139,8 +138,18 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
 
                     layoutManager_board_review = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
 
-                    final String itemId= fr.listId[posi];
+                    String tempId = "";
+
+                    if(check==1){       //BoardFragment에서 넘어왔을 때
+                        BulletinBoardFragment fr = new BulletinBoardFragment();
+                        tempId= fr.listId[posi];
+                    }else if(check==2){     //BoardSearchActivity에서 넘어왔을 때
+                        BoardSearchActivity fr = new BoardSearchActivity();
+                        tempId= fr.listBoardId[posi];
+                    }
+                    final String itemId= tempId;
                     Log.d("댓글이 달릴 게시글 아이디",""+itemId);
+
                     GetData getTask = new GetData();
                     getTask.execute(itemId);
 
@@ -190,7 +199,16 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
                     pw.setAnimationStyle(R.style.Animation_AppCompat_DropDownUp);
                     pw.showAtLocation(popupView, Gravity.CENTER, 0, 0);
 
-                    final String itemId= fr.listId[posi];
+                    String tempId = "";
+
+                    if(check==1){       //BoardFragment에서 넘어왔을 때
+                        BulletinBoardFragment fr = new BulletinBoardFragment();
+                        tempId= fr.listId[posi];
+                    }else if(check==2){     //BoardSearchActivity에서 넘어왔을 때
+                        BoardSearchActivity fr = new BoardSearchActivity();
+                        tempId= fr.listBoardId[posi];
+                    }
+                    final String itemId= tempId;
 
                     btnClosePopup = (ImageButton) popupView.findViewById(R.id.btn_close_popup);
                     btnClosePopup.setOnClickListener(new View.OnClickListener() {
@@ -668,6 +686,8 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
                     myRatingTxt.setText("다른 회원들이 평가한 각 항목의 평균 점수입니다.");
                     popup_element.addView(myRatingTxt);
                     popup_element.removeView(save_btn);
+
+                    Log.d("내 글",item.getString("my"));
 
                 }else{
 
