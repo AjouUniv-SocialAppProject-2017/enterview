@@ -147,7 +147,7 @@ public class MyBoardlist extends AppCompatActivity {
                 }
 
                 myboardView.setLayoutManager(layoutManager_myboard);
-                Adapter_myboardList = new Adapter_myboardList(MyBoardlist.this, Myboadrlist_item, 1);
+                Adapter_myboardList = new Adapter_myboardList(MyBoardlist.this, Myboadrlist_item, 1, param_usrIdx);
                 myboardView.setAdapter(Adapter_myboardList);
 
             } catch (JSONException e) {

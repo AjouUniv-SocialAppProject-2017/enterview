@@ -35,19 +35,18 @@ import java.util.ArrayList;
  */
 public class BoardDetailActivity extends AppCompatActivity {
 
-    private RecyclerView QuestionReview;
-    private  RecyclerView.Adapter Adapter_question_review;
-    private RecyclerView.LayoutManager layoutManager_questionReview;
+    private RecyclerView boardReview;
+    private  RecyclerView.Adapter Adapter_board_review;
+    private RecyclerView.LayoutManager layoutManager_board_review;
 
     String mJsonString,qstSubject,qstContents,qstDate;
 
     public TextView date,title,desc,nick;
     public VideoView video;
 
-    public String boardId;
     EditText reviewText;
     LoginActivity log ;
-    String brdIdx;
+    String brdIdx,param_usrIdx;
     String path;
 
     @Override
@@ -60,21 +59,23 @@ public class BoardDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         brdIdx = intent.getExtras().getString("brdIdx");
+        param_usrIdx = intent.getExtras().getString("param_usrIdx");
         title = (TextView) findViewById(R.id.questionD_title);
         desc = (TextView) findViewById(R.id.questionD_desc);
         video = (VideoView) findViewById(R.id.questionD_image);
         reviewText = (EditText) findViewById(R.id.question_comment);
         log = new LoginActivity();
-/*        GetReviewData taskR = new GetReviewData();
-        taskR.execute(questionId);
 
-        GetData task = new GetData();
+
+        GetReviewData getTask = new GetReviewData();
+        getTask.execute(brdIdx);
+
+ /*        GetData task = new GetData();
         task.execute(questionId);*/
 
-        QuestionReview = (RecyclerView) findViewById(R.id.board_comment);
-        QuestionReview.setHasFixedSize(true);
-        layoutManager_questionReview = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-        showReviewResult();
+        boardReview = (RecyclerView) findViewById(R.id.board_comment);
+        boardReview.setHasFixedSize(true);
+        layoutManager_board_review = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
 
         BoardDetailActivity.GetData getData = new BoardDetailActivity.GetData();
         getData.execute();
@@ -177,33 +178,30 @@ public class BoardDetailActivity extends AppCompatActivity {
         }
     }
 
-
-
-
+    //댓글 업로드
     public void uploadReview (View v){
 
         String desc = reviewText.getText().toString();
-        //수정필요
-        //String id = log.userId;
-        String id = "1";
+        String id = param_usrIdx;
 
         reviewText.setText(null);
 
-        InsertReviewData taskI = new InsertReviewData();
-        taskI.execute(boardId,id, desc);
+        InsertData taskI = new InsertData();
+        taskI.execute(brdIdx,id, desc);
 
-        /*GetReviewData taskR = new GetReviewData();
-        taskR.execute(questionId);*/
+        GetReviewData taskR = new GetReviewData();
+        taskR.execute(brdIdx);
 
     }
 
 
-    class InsertReviewData extends AsyncTask<String, Void, String> {
+    class InsertData extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
         }
+
 
         @Override
         protected void onPostExecute(String result) {
@@ -214,15 +212,18 @@ public class BoardDetailActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String boardId = (String) params[0];
-            String brdcmUserId = (String) params[1];
-            String brdcmContents = (String) params[2];
 
-            String serverURL = "http://52.41.114.24/enterview/boardReview.php";
-            String postParameters = "boardId=" + boardId + "&brdcmUserId=" + brdcmUserId
-                    + "&brdcmContents=" + brdcmContents;
+            //$prdliId $prdcmUserId $prdcmContents
 
-            Log.d("이거임 This", "" + postParameters);
+            String prdliId = (String) params[0];
+            String prdcmUserId = (String) params[1];
+            String prdcmContents = (String) params[2];
+
+            String serverURL = "http://52.41.114.24/enterview/insertBrdReview.php";
+            String postParameters = "brdliId=" + prdliId + "&brdcmUserId=" + prdcmUserId
+                    + "&brdcmContents=" + prdcmContents;
+
+            Log.d("이거봐", "" + postParameters);
 
             try {
 
@@ -261,17 +262,22 @@ public class BoardDetailActivity extends AppCompatActivity {
                 }
 
                 bufferedReader.close();
+
+                Log.d("디비 성공", "디비성공함");
                 return sb.toString();
 
 
             } catch (Exception e) {
+
+                Log.d("디비에러", "디비에러났대");
                 return new String("Error: " + e.getMessage());
             }
 
         }
     }
 
-    /*private class GetReviewData extends AsyncTask<String, Void, String> {
+    //댓글 데이터 로드
+    private class GetReviewData extends AsyncTask<String, Void, String> {
 
         String errorString = null;
 
@@ -282,8 +288,8 @@ public class BoardDetailActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
             super.onPostExecute(result);
+
             mJsonString = result;
             showReviewResult();
 
@@ -292,11 +298,11 @@ public class BoardDetailActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String qstliId = (String) params[0];
 
-            String serverURL = "http://52.41.114.24/readQuReview.php";
-            String postParameters = "qstliId=" + qstliId ;
+            String brdliId = (String) params[0];
 
+            String serverURL = "http://52.41.114.24/enterview/readBrdReview.php";
+            String postParameters = "brdliId=" + brdliId ;
 
             try {
 
@@ -344,35 +350,35 @@ public class BoardDetailActivity extends AppCompatActivity {
             }
 
         }
-    }*/
+    }
 
     private void showReviewResult() {
-        //try {
+        try {
 
-            /*JSONObject jsonObject = new JSONObject(mJsonString);
-            JSONArray jsonArray = jsonObject.getJSONArray("webnautes");*/
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray("webnautes");
 
-            ArrayList<BoardReview_item> BoardReview_items = new ArrayList<>();
+            ArrayList<BoardReview_item> boardReview_items = new ArrayList<>();
 
+            for (int i = 0; i < jsonArray.length(); i++) {
 
-            for (int i = 0; i < 10; i++) {
+                JSONObject item = jsonArray.getJSONObject(i);
 
-                /*JSONObject item = jsonArray.getJSONObject(i);
-
+                String desc = item.getString("reviewDesc");
                 String nick = item.getString("userNic");
-                String desc = item.getString("quReviewDesc");*/
 
-                BoardReview_items.add(new BoardReview_item("닉네임", "내용"));
+                boardReview_items.add(new BoardReview_item(nick,desc));
             }
 
-            QuestionReview.setLayoutManager(layoutManager_questionReview);
-            Adapter_question_review = new Adapter_board_review(this, BoardReview_items, 1);
-            QuestionReview.setAdapter(Adapter_question_review);
-/*
+            boardReview.setLayoutManager(layoutManager_board_review);
+            Adapter_board_review = new Adapter_board_review(this, boardReview_items, 1);
+            boardReview.setAdapter(Adapter_board_review);
+
+            Log.d("GetData", "Success");
 
         } catch (JSONException e) {
+            Log.d("GetData", "Error");
         }
-*/
 
     }
 }

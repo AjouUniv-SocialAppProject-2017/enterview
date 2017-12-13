@@ -20,13 +20,15 @@ public class Adapter_myboardList  extends RecyclerView.Adapter<Adapter_myboardLi
     Context context;
     ArrayList<Myboardlist_item> items;
     int item_layout;
+    String param_usrIdx;
     //Category_detail activity = new Category_detail();
 
 
-    public Adapter_myboardList(Context context, ArrayList<Myboardlist_item> items, int item_layout) {
+    public Adapter_myboardList(Context context, ArrayList<Myboardlist_item> items, int item_layout, String param_usrIdx) {
         this.context=context;
         this.items=items;
         this.item_layout=item_layout;
+        this.param_usrIdx=param_usrIdx;
     }
 
     @Override
@@ -45,6 +47,7 @@ public class Adapter_myboardList  extends RecyclerView.Adapter<Adapter_myboardLi
             public void onClick(View v) {
                 Intent intent = new Intent(context,BoardDetailActivity.class);
                 intent.putExtra("brdIdx",item.getBrdIdx());
+                intent.putExtra("param_usrIdx",param_usrIdx);
                 context.startActivity(intent);
             }
         });

@@ -165,7 +165,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
 
                             commentDesc.setText(null);
                             //수정필요 댓글 update 어케 하냐..
-                            boardReview.removeAllViewsInLayout();
+                            //boardReview.removeAllViewsInLayout();
                             GetData getTask = new GetData();
                             getTask.execute(itemId);
 
@@ -477,6 +477,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
             boardReview.setLayoutManager(layoutManager_board_review);
             Adapter_board_review = new Adapter_board_review(context, boardReview_items, 1);
             boardReview.setAdapter(Adapter_board_review);
+            popupView.invalidate();
 
             Log.d("GetData", "Success");
 
