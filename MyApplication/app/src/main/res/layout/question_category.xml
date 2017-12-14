@@ -4,103 +4,109 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:layout_marginTop="8dp"
-      android:layout_marginBottom="8dp"
+
+ <LinearLayout
+     android:layout_marginTop="60dp"
+     android:layout_width="match_parent"
+     android:layout_height="20dp"
+     android:layout_gravity="center"
+     android:layout_marginLeft="8dp"
+     android:layout_marginRight="8dp"
+     android:layout_weight="1">
+
+  <Button
+      android:id="@+id/category1"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
       android:layout_marginLeft="8dp"
-      android:layout_marginRight="8dp">
-   <Button
-       android:id="@+id/category1"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:layout_weight="1"
-       android:layout_marginLeft="8dp"
-       android:layout_marginRight="8dp"
-       android:background="@drawable/rounded"
-       android:text="서비스/마케팅"
-       android:textSize="20dp"
-       android:textColor="@color/colorPrimary"/>
-   <Button
-       android:id="@+id/category2"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:layout_weight="1"
-       android:layout_marginLeft="8dp"
-       android:layout_marginRight="8dp"
-       android:background="@drawable/rounded"
-       android:textSize="20dp"
-       android:text="IT/전자"
-       android:textColor="@color/colorPrimary"/>
-   <Button
-       android:id="@+id/category3"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:layout_weight="1"
-       android:layout_marginLeft="8dp"
-       android:layout_marginRight="8dp"
-       android:background="@drawable/rounded"
-       android:textSize="20dp"
-       android:text="금융권"
-       android:textColor="@color/colorPrimary"/>
-  </LinearLayout>
+      android:layout_marginRight="8dp"
+      android:layout_weight="1"
+      android:background="@drawable/rounded"
+      android:text="서비스"
+      android:textColor="@color/colorPrimary"
+      android:textSize="20dp" />
+
+  <Button
+      android:id="@+id/category2"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="8dp"
+      android:layout_weight="1"
+      android:background="@drawable/rounded"
+      android:text="IT/전자"
+      android:textColor="@color/colorPrimary"
+      android:textSize="20dp" />
+
+  <Button
+      android:id="@+id/category3"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
+      android:layout_marginLeft="8dp"
+      android:layout_marginRight="8dp"
+      android:layout_weight="1"
+      android:background="@drawable/rounded"
+      android:text="금융권"
+      android:textColor="@color/colorPrimary"
+      android:textSize="20dp" />
+ </LinearLayout>
 
  <LinearLayout
      android:layout_width="match_parent"
-     android:layout_height="wrap_content"
-     android:layout_weight="1"
-     android:layout_marginTop="8dp"
-     android:layout_marginBottom="8dp"
+     android:layout_height="20dp"
+     android:layout_gravity="center"
      android:layout_marginLeft="8dp"
-     android:layout_marginRight="8dp">
+     android:layout_marginRight="8dp"
+     android:layout_weight="1">
+
   <Button
       android:id="@+id/category4"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_weight="1"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
+      android:layout_weight="1"
       android:background="@drawable/rounded"
       android:text="압박"
-      android:textSize="20dp"
-      android:textColor="@color/colorPrimary"/>
+      android:textColor="@color/colorPrimary"
+      android:textSize="20dp" />
+
   <TextView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_weight="1"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
-      android:background="@drawable/rounded"
-      android:text="Queston"
+      android:layout_weight="1"
+      android:background="@color/colorPrimary"
       android:gravity="center"
-      android:textSize="20dp"
-      android:textColor="@color/colorPrimary"/>
+      android:text="Queston"
+      android:textColor="@color/colorAccent"
+      android:textSize="25dp"
+      android:textStyle="bold"/>
+
   <Button
       android:id="@+id/category5"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_weight="1"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
+      android:layout_weight="1"
       android:background="@drawable/rounded"
       android:text="경험"
-      android:textSize="20dp"
-      android:textColor="@color/colorPrimary"/>
+      android:textColor="@color/colorPrimary"
+      android:textSize="20dp" />
  </LinearLayout>
  <LinearLayout
      android:layout_width="match_parent"
-     android:layout_height="wrap_content"
+     android:layout_height="20dp"
      android:layout_weight="1"
-     android:layout_marginTop="8dp"
-     android:layout_marginBottom="8dp"
      android:layout_marginLeft="8dp"
-     android:layout_marginRight="8dp">
+     android:layout_marginRight="8dp"
+     android:layout_gravity="center">
   <Button
       android:id="@+id/category6"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
       android:layout_weight="1"
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
@@ -110,8 +116,8 @@
       android:textColor="@color/colorPrimary"/>
   <Button
       android:id="@+id/category7"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
       android:layout_weight="1"
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
@@ -121,8 +127,8 @@
       android:textColor="@color/colorPrimary"/>
   <Button
       android:id="@+id/category8"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
       android:layout_weight="1"
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"

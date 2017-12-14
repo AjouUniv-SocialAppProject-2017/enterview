@@ -4,30 +4,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorPrimary">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/question_list"
-        android:layout_width="match_parent"
-        android:layout_height="460dp" />
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="@color/colorAccent"
         android:id="@+id/selected_question"
         android:textColor="@color/colorPrimary"
         android:textSize="20dp"
         android:hint="질문을 선택해주세요"
-        android:gravity="center_horizontal"/>
+        android:gravity="center"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/question_list"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="400dp" />
+
     <Button
         android:id="@+id/record_start"
-        android:background="@color/colorAccent"
+        android:background="@drawable/button_border"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="8dp"
         android:padding="12dp"
         android:layout_alignParentBottom="true"
         android:text="녹화 시작"
-        android:textColor="@color/colorPrimary"/>
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"/>
 </LinearLayout>
