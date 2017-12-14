@@ -1,6 +1,7 @@
 package com.example.ajou.myapplication;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,6 +17,7 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -89,20 +91,7 @@ public class BoardWriteActivity extends AppCompatActivity {
 
     // 업로드 버튼
     public void questionWrite_upload(View v){
-
-        s_sub = sub.getText().toString();
-        s_desc = desc.getText().toString();
-        s_user=param_usrIdx;
-
-
-        InsertData task = new InsertData();
-        task.execute(s_sub,s_desc,s_user,videoUrl);
-
-        Log.d("이걸봐", "" + s_desc+" "+s_user);
-        Toast.makeText(getApplicationContext(),"글이 등록되었습니다",Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(BoardWriteActivity.this, MainActivity.class);
-        startActivity(intent);
-        uploadVideo();
+        ShowDialog("글을 등록하시겠습니까",0);
 
     }
 
@@ -234,6 +223,67 @@ public class BoardWriteActivity extends AppCompatActivity {
         }
         UploadVideo uv = new UploadVideo();
         uv.execute();
+    }
+
+    private void ShowDialog(String contents, int type) {
+        // two button
+        if (type == 0) {
+            LayoutInflater dialog = LayoutInflater.from(this);
+            final View dialogLayout = dialog.inflate(R.layout.dialog, null);
+            final Dialog myDialog = new Dialog(this);
+
+            myDialog.setContentView(dialogLayout);
+            myDialog.show();
+
+            Button btn_ok = (Button) dialogLayout.findViewById(R.id.btn_ok);
+            Button btn_cancel = (Button) dialogLayout.findViewById(R.id.btn_cancel);
+            TextView contentsView = (TextView) dialogLayout.findViewById(R.id.dialog_contents);
+            contentsView.setText(contents);
+
+            btn_ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    s_sub = sub.getText().toString();
+                    s_desc = desc.getText().toString();
+                    s_user=param_usrIdx;
+
+                    InsertData task = new InsertData();
+                    task.execute(s_sub,s_desc,s_user,videoUrl);
+
+                    Log.d("이걸봐", "" + s_desc+" "+s_user);
+                    Toast.makeText(getApplicationContext(),"글이 등록되었습니다",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(BoardWriteActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    uploadVideo();
+                }
+            });
+
+            btn_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myDialog.cancel();
+                }
+            });
+        }else if(type == 1){
+            final LayoutInflater dialog = LayoutInflater.from(this);
+            final View dialogLayout = dialog.inflate(R.layout.dialog2, null);
+            final Dialog myDialog = new Dialog(this);
+
+            myDialog.setContentView(dialogLayout);
+            myDialog.show();
+
+            Button btn_ok = (Button) dialogLayout.findViewById(R.id.btn_one_ok);
+            Button btn_cancel = (Button) dialogLayout.findViewById(R.id.btn_cancel);
+            TextView contentsView = (TextView) dialogLayout.findViewById(R.id.dialog_contents);
+            contentsView.setText(contents);
+
+            btn_ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myDialog.dismiss();
+                }
+            });
+        }
     }
 
 
