@@ -1,0 +1,10 @@
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--  Pressed Button -->
+    <item android:drawable="@drawable/mypage_icon_selected" android:state_pressed="true" android:state_selected="false"></item>
+    <item android:drawable="@drawable/mypage_icon_selected" android:state_pressed="true" android:state_selected="true"></item>
+    <item android:drawable="@drawable/mypage_icon_selected" android:state_pressed="false" android:state_selected="true"></item>
+    <!--  UnPressed Button -->
+    <item android:drawable="@drawable/mypage_icon" android:state_pressed="false" android:state_selected="false"></item>
+</selector>

@@ -12,6 +12,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class RecordActivity extends AppCompatActivity {
     TextView finalquestion;
     long mNow;
     Date mDate;
+    int flag = 0;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyyMMddhhmmss");
 
     @Override
@@ -44,8 +46,8 @@ public class RecordActivity extends AppCompatActivity {
         final String param_usrIdx = intent.getExtras().getString("param_usrIdx");
 
         path +=param_usrIdx+"_"+getTime()+".mp4";
-        Button button = (Button) findViewById(R.id.button);
-        Button button2 = (Button) findViewById(R.id.button2);
+        ImageButton button = (ImageButton) findViewById(R.id.button);
+        //Button button2 = (Button) findViewById(R.id.button2);
         holder = surfaceView.getHolder();
         holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         finalquestion = (TextView) findViewById(R.id.finalquestion);
@@ -54,31 +56,54 @@ public class RecordActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recorder = new MediaRecorder();
-                camera = Camera.open(1);
-                camera.setDisplayOrientation(90);
-                camera.unlock();
+                if(flag == 0){
+                    recorder = new MediaRecorder();
+                    camera = Camera.open(1);
+                    camera.setDisplayOrientation(90);
+                    camera.unlock();
 
-                recorder.setCamera(camera);
-                try{
+                    recorder.setCamera(camera);
+                    try{
 
-                    recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-                    recorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
-                    recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-                    recorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
-                    recorder.setVideoEncoder(MediaRecorder.VideoEncoder.DEFAULT);
-                    recorder.setOutputFile(path);
+                        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+                        recorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
+                        recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+                        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+                        recorder.setVideoEncoder(MediaRecorder.VideoEncoder.DEFAULT);
+                        recorder.setOutputFile(path);
 
 
-                    recorder.setPreviewDisplay(holder.getSurface());
-                    recorder.prepare();
-                    recorder.start();
+                        recorder.setPreviewDisplay(holder.getSurface());
+                        recorder.prepare();
+                        recorder.start();
 
-                }catch (IOException e){
-                    e.printStackTrace();
+                    }catch (IOException e){
+                        e.printStackTrace();
+
+                    }
+                    flag = 1;
+                }else if(flag == 1){
+                    if(recorder != null){
+                        //Toast.makeText(getApplicationContext(),"ssssss",Toast.LENGTH_LONG).show();
+                        recorder.stop();
+                        recorder.release();
+                        recorder= null;
+                        camera.stopPreview();
+                        camera.release();
+                        camera=null;
+
+                        Intent intent = new Intent(RecordActivity.this, BoardWriteActivity.class);
+                        intent.putExtra("question",question);
+                        intent.putExtra("param_usrIdx",param_usrIdx);
+                        intent.putExtra("path",path);
+                        startActivity(intent);
+                        flag = 0;
+                    }
                 }
+
             }
         });
+        /*
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,6 +124,7 @@ public class RecordActivity extends AppCompatActivity {
                 }
             }
         });
+        */
     }
     private String getTime(){
         mNow = System.currentTimeMillis();
