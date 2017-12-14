@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.CookieManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -98,6 +99,10 @@ public class LoginActivity extends AppCompatActivity {
             @SuppressLint("ResourceType")
             @Override
             public void onClick(View v) {
+                //버튼 클릭 시 자판 내리기
+                InputMethodManager mInputMethodManager = (InputMethodManager)getSystemService(LoginActivity.this.INPUT_METHOD_SERVICE);
+                mInputMethodManager.hideSoftInputFromWindow(input_password.getWindowToken(), 0);
+
                 email = input_email.getText().toString();
                 password = input_password.getText().toString();
                 if (email.equals(s) || email.equals(s2)) {
