@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -126,7 +127,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
 
                     LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     popupView = inflater.inflate(R.layout.popup_review, null);
-                    final PopupWindow pw = new PopupWindow(popupView, width-50,height-150, true);
+                    final PopupWindow pw = new PopupWindow(popupView, width-100,WindowManager.LayoutParams.WRAP_CONTENT, true);
                     pw.setAnimationStyle(R.style.Animation_AppCompat_DropDownUp);
                     pw.showAtLocation(popupView, Gravity.CENTER, 0, 0);
                     pw.setOutsideTouchable(true);

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,8 +42,9 @@ public class Adapter_myboardList  extends RecyclerView.Adapter<Adapter_myboardLi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Myboardlist_item item = items.get(position);
-        holder.myboard.setText(""+item.getText());
-        holder.myboard.setOnClickListener(new View.OnClickListener() {
+        holder.date.setText(item.getDate());
+        holder.desc.setText(item.getDesc());
+        holder.mycomment_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,BoardDetailActivity.class);
@@ -68,14 +70,15 @@ public class Adapter_myboardList  extends RecyclerView.Adapter<Adapter_myboardLi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-
-
-        TextView myboard;
+        LinearLayout mycomment_list;
+        TextView date, desc;
 
         public ViewHolder(View itemView) {
 
             super(itemView);
-            myboard = (TextView)itemView.findViewById(R.id.myboard);
+            mycomment_list = (LinearLayout)itemView.findViewById(R.id.myboard_list);
+            date = (TextView)itemView.findViewById(R.id.myboard_date);
+            desc = (TextView)itemView.findViewById(R.id.myboard_desc);
         }
     }
 

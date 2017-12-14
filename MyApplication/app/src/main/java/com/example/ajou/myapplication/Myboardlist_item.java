@@ -5,16 +5,19 @@ package com.example.ajou.myapplication;
  */
 
 public class Myboardlist_item {
-    String text;
+    String date;
+    String desc;
     String brdIdx;
-    public String getText(){ return this.text; }
+    public String getDate(){ return this.date; }
+    public String getDesc(){ return this.desc;  }
     public String getBrdIdx(){ return this.brdIdx; }
 
     public Myboardlist_item(){}
 
-    public Myboardlist_item(String text, String brdIdx){
+    public Myboardlist_item(String date, String desc, String brdIdx){
 
-         this.text = text;
+        this.date = date;
+        this.desc = desc;
         this.brdIdx = brdIdx;
 
     }

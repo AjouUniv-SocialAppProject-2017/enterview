@@ -6,6 +6,7 @@ package com.example.ajou.myapplication;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.widget.LinearLayout;
         import android.widget.TextView;
         import android.widget.Toast;
 
@@ -41,8 +42,9 @@ public class Adapter_mycommentList  extends RecyclerView.Adapter<Adapter_mycomme
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Mycommentlist_item item = items.get(position);
-        holder.question.setText(item.getDate()+" "+item.getComment());
-        holder.question.setOnClickListener(new View.OnClickListener() {
+        holder.date.setText(item.getDate());
+        holder.desc.setText(item.getComment());
+        holder.mycomment_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,BoardDetailActivity.class);
@@ -61,14 +63,15 @@ public class Adapter_mycommentList  extends RecyclerView.Adapter<Adapter_mycomme
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-
-
-        TextView question;
+        LinearLayout mycomment_list;
+        TextView date, desc;
 
         public ViewHolder(View itemView) {
 
             super(itemView);
-            question = (TextView)itemView.findViewById(R.id.mycomment);
+            mycomment_list = (LinearLayout)itemView.findViewById(R.id.mycomment_list);
+            date = (TextView)itemView.findViewById(R.id.mycomment_date);
+            desc = (TextView)itemView.findViewById(R.id.mycomment_desc);
         }
     }
 

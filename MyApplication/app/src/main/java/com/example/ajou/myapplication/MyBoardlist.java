@@ -142,7 +142,7 @@ public class MyBoardlist extends AppCompatActivity {
                     boardlist[i] = item.getString("brdDate")+"  "+item.getString("brdSubject");
                     count++;
                     Log.e("나와", boardlist[i]);
-                    Myboadrlist_item.add(new Myboardlist_item(boardlist[i],item.getString("brdIdx")));
+                    Myboadrlist_item.add(new Myboardlist_item(item.getString("brdDate"), item.getString("brdSubject") ,item.getString("brdIdx")));
 
                 }
 

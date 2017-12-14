@@ -275,6 +275,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if(check>0&&check2==2){
                     pager.setCurrentItem(1);
+                    category.setSelected(false);
+                    bulletin.setSelected(true);
+                    myPage.setSelected(false);
 
                     AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                     alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
