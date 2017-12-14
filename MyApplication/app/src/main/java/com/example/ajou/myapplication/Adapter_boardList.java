@@ -35,7 +35,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -160,8 +162,14 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
                             String desc = commentDesc.getText().toString();
                             String userId = usrIdx;
 
+                            //현재 시간 구하기
+                            long now = System.currentTimeMillis();
+                            Date date = new Date(now);
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                            String str = sdf.format(date);
+
                             InsertData insertTask = new InsertData();
-                            insertTask.execute(itemId,userId,desc);
+                            insertTask.execute(itemId,userId,desc,str);
 
                             commentDesc.setText(null);
                             //수정필요 댓글 update 어케 하냐..
@@ -320,10 +328,11 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
             String prdliId = (String) params[0];
             String prdcmUserId = (String) params[1];
             String prdcmContents = (String) params[2];
+            String cmDate = (String) params[3];
 
             String serverURL = "http://52.41.114.24/enterview/insertBrdReview.php";
             String postParameters = "brdliId=" + prdliId + "&brdcmUserId=" + prdcmUserId
-                    + "&brdcmContents=" + prdcmContents;
+                    + "&brdcmContents=" + prdcmContents + "&cmntDate=" + cmDate;
 
             Log.d("이거봐", "" + postParameters);
 

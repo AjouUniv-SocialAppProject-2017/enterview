@@ -141,8 +141,15 @@ public class BoardWriteActivity extends AppCompatActivity {
             String brdUrl = (String) params[3];
 
             String serverURL = "http://52.41.114.24/enterview/boardWrite.php";
+
+            //현재 시간 구하기
+            long now = System.currentTimeMillis();
+            Date date = new Date(now);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String str = sdf.format(date);
+
             String postParameters = "brdSubject=" + brdSubject + "&brdContents=" + brdContents +
-                    "&brdUserId=" + brdUserId + "&brdUrl=" + brdUrl;
+                    "&brdUserId=" + brdUserId + "&brdUrl=" + brdUrl + "&brdDate=" + str;
 
             Log.d("이거봐", "" + postParameters);
 
