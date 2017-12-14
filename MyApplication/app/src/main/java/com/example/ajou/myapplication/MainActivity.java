@@ -1,6 +1,7 @@
 package com.example.ajou.myapplication;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             //Toast.makeText(getApplicationContext(), param_email + "/" + param_nickname + "/" + param_major + "/" + param_notification + "/" + param_usrIdx, Toast.LENGTH_LONG).show();
             flag ++;
         }
+        ShowDialog(param_nickname+"님 환영합니다",1);
         pager = (ViewPager)findViewById(R.id.pager);
         category= (ImageButton)findViewById(R.id.btn_category);
         bulletin = (ImageButton)findViewById(R.id.btn_bulletin);
@@ -182,10 +185,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
         flag = 0 ;
-        Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-        startActivity(intent);
+        ShowDialog("로그아웃 하시겠습니까?", 0);
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -275,16 +277,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(check>0&&check2==2){
                     pager.setCurrentItem(1);
-
-                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    alert.setMessage("게시판에서 "+check+"개의 댓글을 추가로 작성하면 영상 녹화가 가능합니다.");
-                    alert.show();
+                    ShowDialog("게시판에서 "+check+"개의 댓글을 추가로 작성하면 영상 녹화가 가능합니다.",1);
                     check2=1;
                 }
             }
@@ -292,6 +285,56 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             Log.e("checkError",e.getMessage());
 
+        }
+    }
+
+    private void ShowDialog(String contents, int type) {
+        // two button
+        if (type == 0) {
+            LayoutInflater dialog = LayoutInflater.from(this);
+            final View dialogLayout = dialog.inflate(R.layout.dialog, null);
+            final Dialog myDialog = new Dialog(this);
+
+            myDialog.setContentView(dialogLayout);
+            myDialog.show();
+
+            Button btn_ok = (Button) dialogLayout.findViewById(R.id.btn_ok);
+            Button btn_cancel = (Button) dialogLayout.findViewById(R.id.btn_cancel);
+            TextView contentsView = (TextView) dialogLayout.findViewById(R.id.dialog_contents);
+            contentsView.setText(contents);
+
+            btn_ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+
+            btn_cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myDialog.cancel();
+                }
+            });
+        }else if(type == 1){
+            final LayoutInflater dialog = LayoutInflater.from(this);
+            final View dialogLayout = dialog.inflate(R.layout.dialog2, null);
+            final Dialog myDialog = new Dialog(this);
+
+            myDialog.setContentView(dialogLayout);
+            myDialog.show();
+
+            Button btn_ok = (Button) dialogLayout.findViewById(R.id.btn_one_ok);
+            Button btn_cancel = (Button) dialogLayout.findViewById(R.id.btn_cancel);
+            TextView contentsView = (TextView) dialogLayout.findViewById(R.id.dialog_contents);
+            contentsView.setText(contents);
+
+            btn_ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myDialog.dismiss();
+                }
+            });
         }
     }
 
