@@ -98,6 +98,8 @@ public class RecordActivity extends AppCompatActivity {
                         intent.putExtra("path",path);
                         startActivity(intent);
                         flag = 0;
+                        finish();
+
                     }
                 }
 
