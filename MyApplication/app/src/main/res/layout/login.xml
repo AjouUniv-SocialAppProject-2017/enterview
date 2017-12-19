@@ -1,22 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
      <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:app="http://schemas.android.com/apk/res-auto"
          android:layout_width="fill_parent"
          android:layout_height="fill_parent"
          android:background="#EA6B66"
          android:fitsSystemWindows="true">
          <LinearLayout
              android:orientation="vertical"
-             android:layout_width="match_parent"
+             android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:paddingTop="56dp">
-             <TextView
-                 android:text="EnterView"
-                 android:textColor="#FFFFFF"
-                 android:textSize="40dp"
-                 android:layout_width="wrap_content"
-                 android:layout_height="72dp"
-                 android:layout_marginBottom="24dp"
-                 android:layout_gravity="center_horizontal"/>
+
+             <RelativeLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:textAlignment="center"
+                 android:paddingLeft="85dip"
+                 android:layout_marginBottom="24dip">
+
+                 <ImageView
+                     android:id="@+id/imageView"
+                     android:layout_width="50dip"
+                     android:layout_height="50dip"
+                     android:cropToPadding="false"
+                     android:scaleType="centerInside"
+                     app:srcCompat="@drawable/E_icon" />
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center_horizontal"
+                     android:layout_marginLeft="4dip"
+                     android:layout_toRightOf="@+id/imageView"
+                     android:text="nterview"
+                     android:textColor="#FFFFFF"
+                     android:textSize="40dp" />
+
+             </RelativeLayout>
+
              <!--  Email Label -->
              <android.support.design.widget.TextInputLayout
                  android:id="@+id/layout_email"
@@ -81,6 +102,8 @@
                  android:padding="12dp"
                  android:text="No account yet? Create one"
                  android:textColor="#EA6B66"/>
+
+
          </LinearLayout>
     </RelativeLayout>
 

@@ -219,10 +219,9 @@ public class BulletinBoardFragment extends Fragment {
                 board_items.add(new Board_item(brdRating, brdNickname, brdSubject, brdDate, brdContents,
                         "댓글",brdUrl,brdUserId));
             }
-
             boardView.setLayoutManager(layoutManager_board);
             Adapter_board = new Adapter_boardList(getActivity(), board_items, 1,param_usrIdx, 1);
-            // Adapter_proud.notifyDataSetChanged();
+            Adapter_board.notifyDataSetChanged();
             boardView.setAdapter(Adapter_board);
 
         } catch (JSONException e) {

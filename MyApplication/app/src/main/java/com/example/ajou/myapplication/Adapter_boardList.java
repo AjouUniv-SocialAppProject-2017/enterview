@@ -88,6 +88,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
         holder.name.setText(item.getName());
         holder.title.setText(item.getTitle());
         holder.comment.setText(item.getComment());
+        final TextView ratingTxt = holder.rating;
         holder.rating.setText(item.getRating());
 
         Uri uri = Uri.parse(item.getUrl());
@@ -262,6 +263,7 @@ public class Adapter_boardList extends RecyclerView.Adapter<Adapter_boardList.Vi
                             InsertRatingData insertTask = new InsertRatingData();
                             insertTask.execute(itemId,usrIdx,""+rb1.getRating(),""+rb2.getRating(),""+rb3.getRating(),
                                     ""+rb4.getRating(),""+rb5.getRating(),""+rb.getRating());
+                            ratingTxt.setText(((int)rb.getRating())+"");
                             pw.dismiss();
                         }
                     });
