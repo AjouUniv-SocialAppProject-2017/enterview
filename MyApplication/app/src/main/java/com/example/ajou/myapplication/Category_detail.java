@@ -60,6 +60,10 @@ public class Category_detail extends AppCompatActivity {
         Intent intent = getIntent();
         qstnCategory = intent.getExtras().getInt("qstnCategory");
         final String param_usrIdx = intent.getExtras().getString("param_usrIdx");
+        final String param_major = intent.getExtras().getString("param_nickname");
+        final String param_notification = intent.getExtras().getString("param_notification");
+        final String param_email = intent.getExtras().getString("param_email");
+        final String param_nickname = intent.getExtras().getString("param_nickname");
         selectedQuestion = (TextView) findViewById(R.id.selected_question);
 
         record_start = (Button) findViewById(R.id.record_start);
@@ -72,6 +76,10 @@ public class Category_detail extends AppCompatActivity {
                     Intent intent  = new Intent(getApplicationContext(),RecordActivity.class);
                     intent.putExtra("finalquestion",finalquestion);
                     intent.putExtra("param_usrIdx",param_usrIdx);
+                    intent.putExtra("param_major",param_major);
+                    intent.putExtra("param_nickname",param_nickname);
+                    intent.putExtra("param_notification",param_notification);
+                    intent.putExtra("param_email",param_email);
                     startActivity(intent);
                     finish();
                 }

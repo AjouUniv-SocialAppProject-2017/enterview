@@ -36,9 +36,11 @@ public class BoardSearchActivity extends AppCompatActivity {
     String param_usrIdx, param_major;
 
     String mJsonString;
+    String searchKey_txt="";
 
     public static String[] listBoardId = new String[100];
     RecyclerView boardView;
+    CheckBox checkbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class BoardSearchActivity extends AppCompatActivity {
         Intent intent = getIntent();
         param_usrIdx = intent.getExtras().getString("param_usrIdx");
         param_major = intent.getExtras().getString("param_major");
+        //Toast.makeText(getApplicationContext(),param_major,Toast.LENGTH_SHORT).show();
     }
 
 
@@ -60,13 +63,13 @@ public class BoardSearchActivity extends AppCompatActivity {
 
         //검색어
         TextView searchKey = (TextView)findViewById(R.id.searchKey);
-        String searchKey_txt = searchKey.getText().toString();
+        searchKey_txt = searchKey.getText().toString();
         //한글 검색어는 URL 인코딩을 해주어야한다
         searchKey_txt = URLEncoder.encode(searchKey_txt);
 
         //같은직무 체크박스
-        CheckBox checkBox = (CheckBox)findViewById(R.id.checkBox);
-        String sameJobIsChecked = (checkBox.isChecked()) ? param_major : "";
+        checkbox = (CheckBox)findViewById(R.id.checkBox);
+        String sameJobIsChecked = (checkbox.isChecked()) ? param_major : "";
         sameJobIsChecked = URLEncoder.encode(sameJobIsChecked);
 
         //검색 결과 받아오기

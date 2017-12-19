@@ -42,6 +42,10 @@ public class CategoryFragment extends Fragment {
         final View view = inflater.inflate(R.layout.question_category, container, false);
         Bundle bundle = getArguments();
         final String param_usrIdx = bundle.getString("param_usrIdx"); // 전달한 key 값
+        final String param_major = bundle.getString("param_major"); // 전달한 key 값
+        final String param_nickname = bundle.getString("param_nickname"); // 전달한 key 값
+        final String param_email = bundle.getString("param_email"); // 전달한 key 값
+        final String param_notification = bundle.getString("param_notification"); // 전달한 key 값
 
         category1 = (Button) view.findViewById(R.id.category1);
         category1.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +55,11 @@ public class CategoryFragment extends Fragment {
                 qstnCategory =1;
                 intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
+                intent.putExtra("param_major",param_major);
+                intent.putExtra("param_nickname",param_nickname);
+                intent.putExtra("param_notification",param_notification);
+                intent.putExtra("param_email",param_email);
+
                 startActivity(intent);
             }
         });
@@ -62,6 +71,11 @@ public class CategoryFragment extends Fragment {
                 qstnCategory =2;
                 intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
+                intent.putExtra("param_major",param_major);
+                intent.putExtra("param_nickname",param_nickname);
+                intent.putExtra("param_notification",param_notification);
+                intent.putExtra("param_email",param_email);
+
                 startActivity(intent);
             }
         });
@@ -73,6 +87,11 @@ public class CategoryFragment extends Fragment {
                 qstnCategory =3;
                 intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
+                intent.putExtra("param_major",param_major);
+                intent.putExtra("param_nickname",param_nickname);
+                intent.putExtra("param_notification",param_notification);
+                intent.putExtra("param_email",param_email);
+
                 startActivity(intent);
             }
         });
@@ -84,6 +103,11 @@ public class CategoryFragment extends Fragment {
                 qstnCategory =4;
                 intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
+                intent.putExtra("param_major",param_major);
+                intent.putExtra("param_nickname",param_nickname);
+                intent.putExtra("param_notification",param_notification);
+                intent.putExtra("param_email",param_email);
+
                 startActivity(intent);
             }
         });
@@ -95,6 +119,11 @@ public class CategoryFragment extends Fragment {
                 qstnCategory =5;
                 intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
+                intent.putExtra("param_major",param_major);
+                intent.putExtra("param_nickname",param_nickname);
+                intent.putExtra("param_notification",param_notification);
+                intent.putExtra("param_email",param_email);
+
                 startActivity(intent);
             }
         });
@@ -106,6 +135,11 @@ public class CategoryFragment extends Fragment {
                 qstnCategory =6;
                 intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
+                intent.putExtra("param_major",param_major);
+                intent.putExtra("param_nickname",param_nickname);
+                intent.putExtra("param_notification",param_notification);
+                intent.putExtra("param_email",param_email);
+
                 startActivity(intent);
             }
         });
@@ -117,6 +151,11 @@ public class CategoryFragment extends Fragment {
                 qstnCategory =7;
                 intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
+                intent.putExtra("param_major",param_major);
+                intent.putExtra("param_nickname",param_nickname);
+                intent.putExtra("param_notification",param_notification);
+                intent.putExtra("param_email",param_email);
+
                 startActivity(intent);
             }
         });
@@ -128,6 +167,10 @@ public class CategoryFragment extends Fragment {
                 qstnCategory =8;
                 intent.putExtra("qstnCategory",qstnCategory);
                 intent.putExtra("param_usrIdx",param_usrIdx);
+                intent.putExtra("param_major",param_major);
+                intent.putExtra("param_nickname",param_nickname);
+                intent.putExtra("param_notification",param_notification);
+                intent.putExtra("param_email",param_email);
                 startActivity(intent);
             }
         });

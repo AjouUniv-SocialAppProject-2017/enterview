@@ -51,6 +51,7 @@ public class MyPageFragment extends Fragment {
         param_notification = bundle.getString("param_notification");
         param_major = bundle.getString("param_major");
 
+
         boardlist = (Button) layout.findViewById(R.id.myText);
         commentlist = (Button) layout.findViewById(R.id.myComment);
         personalIdContents = (TextView) layout.findViewById(R.id.personalIdContents);

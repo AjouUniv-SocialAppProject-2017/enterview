@@ -44,6 +44,11 @@ public class RecordActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String question = intent.getExtras().getString("finalquestion");
         final String param_usrIdx = intent.getExtras().getString("param_usrIdx");
+        final String param_major = intent.getExtras().getString("param_major");
+
+        final String param_nickname = intent.getExtras().getString("param_nickname");
+        final String param_notification = intent.getExtras().getString("param_notification");
+        final String param_email = intent.getExtras().getString("param_email");
 
         path +=param_usrIdx+"_"+getTime()+".mp4";
         ImageButton button = (ImageButton) findViewById(R.id.button);
@@ -94,8 +99,12 @@ public class RecordActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(RecordActivity.this, BoardWriteActivity.class);
                         intent.putExtra("question",question);
-                        intent.putExtra("param_usrIdx",param_usrIdx);
                         intent.putExtra("path",path);
+                        intent.putExtra("param_usrIdx",param_usrIdx);
+                        intent.putExtra("param_major",param_major);
+                        intent.putExtra("param_nickname",param_nickname);
+                        intent.putExtra("param_notification",param_notification);
+                        intent.putExtra("param_email",param_email);
                         startActivity(intent);
                         flag = 0;
                         finish();

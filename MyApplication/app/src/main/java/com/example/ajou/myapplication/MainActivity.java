@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     static int check = 0;
     static int check2 = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +70,14 @@ public class MainActivity extends AppCompatActivity {
             //Toast.makeText(getApplicationContext(), param_email + "/" + param_nickname + "/" + param_major + "/" + param_notification + "/" + param_usrIdx, Toast.LENGTH_LONG).show();
             ShowDialog(param_nickname+"님 환영합니다",1);
             flag ++;
+        }else{
+            param_email = intent.getExtras().getString("param_email");
+            param_nickname = intent.getExtras().getString("param_nickname");
+            param_notification = intent.getExtras().getString("param_notification");
+            param_major = intent.getExtras().getString("param_major");
+            param_usrIdx = intent.getExtras().getString("param_usrIdx");
         }
-        param_usrIdx = intent.getExtras().getString("param_usrIdx");
+
         pager = (ViewPager)findViewById(R.id.pager);
         category= (ImageButton)findViewById(R.id.btn_category);
         bulletin = (ImageButton)findViewById(R.id.btn_bulletin);
@@ -142,8 +149,11 @@ public class MainActivity extends AppCompatActivity {
                     Fragment categoryFragment = new CategoryFragment();
                     Bundle bundle0 = new Bundle(1); // 파라미터는 전달할 데이터 개수
                     bundle0.putString("param_usrIdx", param_usrIdx); // key , value
+                    bundle0.putString("param_major",param_major);
+                    bundle0.putString("param_nickname",param_nickname);
+                    bundle0.putString("param_notification",param_notification);
+                    bundle0.putString("param_email",param_email);
                     categoryFragment.setArguments(bundle0);
-
                     //현재 날짜
                     long now = System.currentTimeMillis();
                     Date date = new Date(now);
@@ -160,6 +170,9 @@ public class MainActivity extends AppCompatActivity {
                     Bundle bundle1 = new Bundle(1); // 파라미터는 전달할 데이터 개수
                     bundle1.putString("param_usrIdx", param_usrIdx); // key , value
                     bundle1.putString("param_major",param_major);
+                    bundle1.putString("param_nickname",param_nickname);
+                    bundle1.putString("param_notification",param_notification);
+                    bundle1.putString("param_email",param_email);
                     boardFragment.setArguments(bundle1);
                     return boardFragment;
                 case 2:

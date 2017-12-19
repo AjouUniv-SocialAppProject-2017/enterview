@@ -49,8 +49,7 @@ public class BulletinBoardFragment extends Fragment {
     VideoView videoView;
     String path = "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4";
 
-    String param_usrIdx,param_major;
-
+    String param_usrIdx,param_major,param_nickname,param_notification,param_email;
 /*
     public BulletinBoardFragment()
     {
@@ -82,6 +81,9 @@ public class BulletinBoardFragment extends Fragment {
         Bundle bundle = getArguments();
         param_usrIdx = bundle.getString("param_usrIdx"); // 전달한 key 값
         param_major = bundle.getString("param_major");
+        param_email = bundle.getString("param_email");
+        param_nickname = bundle.getString("param_nickname");
+        param_notification = bundle.getString("param_notification");
 
 
         //검색버튼 클릭 시, 검색 액티비티로 이동

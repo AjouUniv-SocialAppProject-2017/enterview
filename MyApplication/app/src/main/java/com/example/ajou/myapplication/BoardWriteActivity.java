@@ -60,6 +60,10 @@ public class BoardWriteActivity extends AppCompatActivity {
     String path;
     String videoUrl= "http://52.41.114.24/enterview/VideoUpload/uploads/";
     String filename;
+    String param_nickname;
+    String param_email;
+    String param_notification;
+    String param_major;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,11 @@ public class BoardWriteActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String question = intent.getExtras().getString("question");
         param_usrIdx = intent.getExtras().getString("param_usrIdx");
+        param_major = intent.getExtras().getString("param_major");
+        param_nickname = intent.getExtras().getString("param_nickname");
+        param_notification = intent.getExtras().getString("param_notification");
+        param_email = intent.getExtras().getString("param_email");
+
         path = intent.getExtras().getString("path");
         filename = path.substring(8,path.length());
         videoUrl += filename;
@@ -92,7 +101,6 @@ public class BoardWriteActivity extends AppCompatActivity {
     // 업로드 버튼
     public void questionWrite_upload(View v){
         ShowDialog("글을 등록하시겠습니까",0);
-
     }
 
     // 뒤로가기 버튼
@@ -101,14 +109,11 @@ public class BoardWriteActivity extends AppCompatActivity {
     }
 
     class InsertData extends AsyncTask<String, Void, String> {
-        ProgressDialog progressDialog;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
-            progressDialog = ProgressDialog.show(BoardWriteActivity.this,
-                    "Please Wait", null, true, true);
         }
 
 
@@ -254,6 +259,10 @@ public class BoardWriteActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"글이 등록되었습니다",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(BoardWriteActivity.this, MainActivity.class);
                     intent.putExtra("param_usrIdx",param_usrIdx);
+                    intent.putExtra("param_major",param_major);
+                    intent.putExtra("param_nickname",param_nickname);
+                    intent.putExtra("param_notification",param_notification);
+                    intent.putExtra("param_email",param_email);
                     startActivity(intent);
                     uploadVideo();
                     finish();
