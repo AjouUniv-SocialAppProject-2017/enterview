@@ -24,7 +24,7 @@
                      android:layout_height="50dip"
                      android:cropToPadding="false"
                      android:scaleType="centerInside"
-                     app:srcCompat="@drawable/E_icon" />
+                     app:srcCompat="@drawable/e_icon" />
 
                  <TextView
                      android:layout_width="wrap_content"

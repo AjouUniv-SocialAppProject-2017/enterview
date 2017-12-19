@@ -58,18 +58,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
         if(flag == 0) {
             // user information 가져오기
-            Intent intent = getIntent();
             param_email = intent.getExtras().getString("param_email");
             param_nickname = intent.getExtras().getString("param_nickname");
             param_notification = intent.getExtras().getString("param_notification");
             param_major = intent.getExtras().getString("param_major");
             param_usrIdx = intent.getExtras().getString("param_usrIdx");
             //Toast.makeText(getApplicationContext(), param_email + "/" + param_nickname + "/" + param_major + "/" + param_notification + "/" + param_usrIdx, Toast.LENGTH_LONG).show();
+            ShowDialog(param_nickname+"님 환영합니다",1);
             flag ++;
         }
-        ShowDialog(param_nickname+"님 환영합니다",1);
+        param_usrIdx = intent.getExtras().getString("param_usrIdx");
         pager = (ViewPager)findViewById(R.id.pager);
         category= (ImageButton)findViewById(R.id.btn_category);
         bulletin = (ImageButton)findViewById(R.id.btn_bulletin);
