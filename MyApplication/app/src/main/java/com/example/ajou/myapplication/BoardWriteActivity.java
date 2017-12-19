@@ -253,6 +253,7 @@ public class BoardWriteActivity extends AppCompatActivity {
                     Log.d("이걸봐", "" + s_desc+" "+s_user);
                     Toast.makeText(getApplicationContext(),"글이 등록되었습니다",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(BoardWriteActivity.this, MainActivity.class);
+                    intent.putExtra("param_usrIdx", param_usrIdx);
                     startActivity(intent);
                     uploadVideo();
                 }

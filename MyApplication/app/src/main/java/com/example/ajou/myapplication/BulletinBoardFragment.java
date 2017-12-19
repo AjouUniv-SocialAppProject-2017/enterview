@@ -221,7 +221,7 @@ public class BulletinBoardFragment extends Fragment {
             }
             boardView.setLayoutManager(layoutManager_board);
             Adapter_board = new Adapter_boardList(getActivity(), board_items, 1,param_usrIdx, 1);
-            Adapter_board.notifyDataSetChanged();
+            //Adapter_board.notifyDataSetChanged();
             boardView.setAdapter(Adapter_board);
 
         } catch (JSONException e) {
